@@ -1,0 +1,27 @@
+AI Agents
+    What They Are: AI agents are individual, task-specific systems designed to perform a particular function or set of functions. They operate autonomously within their defined scope but are limited to the tasks they are programmed or trained for.
+    Key Point: They are individual components that handle specific tasks, such as answering questions, recommending products, or controlling a thermostat.
+    Example: A chatbot (AI agent) is designed to answer customer queries but cannot plan a trip or manage a supply chain.
+Agentic AI
+    What It Is: Agentic AI refers to a higher-level system that uses multiple AI agents (or its own advanced capabilities) to achieve complex, multi-step goals. It exhibits agency, meaning it can plan, reason, and adapt to achieve its objectives in dynamic environments.
+    Key Point: Agentic AI often orchestrates or integrates multiple AI agents (or its own subsystems) to accomplish broader, more complex tasks.
+    Example: A self-driving car (Agentic AI) uses multiple AI agents (e.g., for object detection, route planning, and decision-making) to navigate safely and reach its destination.
+
+How They Work Together
+    AI Agents: Perform individual tasks (e.g., detecting obstacles, calculating routes, or controlling speed).
+    Agentic AI: Coordinates these tasks, makes high-level decisions, and adapts to achieve a larger goal (e.g., driving the car to a destination while avoiding obstacles and following traffic rules).
+Analogy
+    AI Agents: Like workers in a factory, each performing a specific task (e.g., assembling parts, painting, packaging).
+    Agentic AI: Like a factory manager who coordinates all the workers, plans production, and ensures the factory meets its goals.
+Key Difference
+    AI Agents: Focus on individual tasks.
+    Agentic AI: Focuses on achieving complex goals by using or coordinating multiple AI agents (or its own advanced capabilities).
+Example in Practice
+    AI Agents:
+        A weather prediction model forecasts rain.
+        A scheduling AI suggests rescheduling an outdoor event.
+    Agentic AI:
+        An advanced AI system uses the weather prediction and scheduling AI to plan and execute a full event, including notifying attendees, booking an indoor venue, and adjusting logistics.
+    Summary
+    AI Agents: Handle individual, specific tasks.
+    Agentic AI: Uses or coordinates multiple AI agents (or its own advanced reasoning) to achieve complex, multi-step goals

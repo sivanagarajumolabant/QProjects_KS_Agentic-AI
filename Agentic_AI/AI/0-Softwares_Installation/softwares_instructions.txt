@@ -1,0 +1,19 @@
+1.Download Anaconda from the website if you haven't already . You can download the latest version from the official Anaconda website. Once you have downloaded the installer
+    - while doing installation need to check all the checboxes to add into env path
+2.Download miniconda for lower configuration systems.
+3.Download the required packages using conda
+4.Create a new environment using conda
+    -   conda create -n ai python==3.12 -- it will create it in root path
+    -   conda create -p ai python==3.12 -- it will create current path where we are creating
+5. To activate this environment, use
+    -   conda activate ai
+6. To deactivate an active environment, use
+    -   conda deactivate
+7. to see the list env 
+    -   conda env list
+8. to check conda version
+    - conda --version
+9  to check python version after activated conda
+    - python --version
+10 to remove env
+    - conda env remove --name env_name

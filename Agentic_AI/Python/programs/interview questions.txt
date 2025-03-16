@@ -1,0 +1,217 @@
+What is the difference between list and tuple ?
+When to use tuples and when to use lists?
+What is mutable and Immutable?
+What is the difference between set and dictionary?
+How to fetch all the keys from dictionay?
+How to update multiple items into an existing dictionary?
+How to delete the dictionary ?
+What is the difference between dict comprehension and list comprehension?
+Which data type is allowed as a key in python? – Immutable data type(Tuple)
+How to copy a dictionary? ( d= d1 and d1 = d.copy())
+What is shallow copy and deep copy?
+Can we define immutable object as a nested element in shallow and deepcopy?
+Why set partially Immutable ? (because it contains hasable element)
+What is the lambda function?
+What is a map function?
+What is pickling and unpickling?
+Explain DataType in python?
+What are identifiers?
+What are decorators and their type?
+What is init ?(and constructor type)
+Explain oops and its principals
+What is self ?(Self is a reference variable which points to the current object)
+What is class ,object , method , instance variable, static variable,global variable local
+# w = 200 # global variable
+# class Student: # class
+#     a = 10 # static variable
+#     def __init__(self): #-- default constructor
+#         self.name = 'CHANDANI'
+#     def __init__(self,name): #-- parameterized constructor
+#         self.name = name # instance variable
+#     # if we define two constructor first will be overrided by second so only second will be printed
+#     def display(self):
+#         x = 50 # location variable
+#         print(self.name, Student.a, w,x)
+ 
+# ob = Student('chandani') # object
+# ob.display()
+# Classmethod
+class Student:
+    # value = 10
+    # @classmethod
+    # def display(cls):
+    #     print(cls.value)
+    value = 10
+    @staticmethod
+    def display():
+        print(Student.value)
+ 
+obj = Student()
+obj.display()
+ 
+# 26. Private,public and protected
+# Private
+print('================')
+class Student:
+    def __init__(self):
+        self.__name = 'chandani'
+    def __display(self):
+        print(self.__name)
+    def display(self):
+        self.__display()
+f = Student()
+f.display()
+#Protected
+class Student:
+    def __init__(self):
+        self._name = 'chandani'
+    def _display(self):
+        print(self._name)
+ 
+f = Student()
+f._display()
+ 
+Encapsulation : Encapsulation is the concept of wrapping data (variables) and methods (functions) that operate on the data into a single unit or class. It also restricts direct access to some of an object's components, which is a way of preventing unintended interference and misuse of the methods and data.
+Private ,Public, and protected
+ 
+26. Single Inheritance
+class College:
+    def __init__(self,name,age):
+        print('hello')
+        self.name = name
+        self.age = age
+ 
+    def display(self):
+        print('Hi ', self.name, ' and ' + self.age)
+ 
+class Student(College):
+    def __init__(self,name,age):
+        super().__init__(name,age)
+        print('hii')
+
+ob = Student('chandani','23')
+ob.display()
+ 
+27. Polymorphism and it’s type
+28. Abstraction ,Inheritance and its type
+29. Method Overriding
+class A:
+def __init__(self,name,age):
+print('hello')
+self.name = name
+self.age = age
+ 
+def display(self):
+print('Hi ')
+ 
+class B(A):
+def display(self):
+print('hii')
+30. Explain local and global variables in python?
+31. Explain Multiprocessing and multithreading?
+32. How does memory manage ?
+33. Difference between module and package?
+34. Explain break,continue and pass
+Break - exit the loop
+Continue - skip the current iteration and continue with the next iteration
+Pass - nothing is there
+35. Exception handling
+Try - the block of code executed
+Except - the block of code execute if any error occur
+Else - the block of code run if there is not exception occurs
+Finally - the block of code run always
+Where python is used?
+How to format the strings in python?
+Different ways to read and write files?
+
+
+
+1. Cashing & Cookies Django
+2. Pagination in Django
+3. Fixtures in Pytest
+4. ML need to check 
+5. optimization techniques.
+
+
+1. how to create django project & structure
+2. clousers in python
+3. multithreading & multiprocessing
+4. list of methods in API 
+5. diff between put/patch
+6. property decorators
+7. diff Authentication & Authrization in django
+8. Rest operator & spread opeartor in React
+9. how to pass values from parenet to child compenonet
+10.what are the react hooks methods used?
+11. diff between real dom & virtual dom
+12. how to call the react api ?
+13. diff between axios & ajax
+14. React Architecture.
+15. how to create python project & setup
+16. what is the use of filter in django?
+17. is it possible to call object instance in filetr in django?
+18. what is the use of reduce in python?
+19. rest framework setup 
+20. what is the csrf token
+21. how to define __all__ or specifi columns in serilizer
+22. what is the use of useeffect & is it possible to keep multiple in single components
+
+
+
+1.MATERIALIZED VIEW
+2.JOINS EXAMPLE
+3.MANAGEr & EMPLYEE TABLE TO GET THE SALARIES WHOEVER THE MANAGERS (check if exists)
+	SELECT e.Employee_ID, e.Name, e.Salary
+	FROM Employee e
+	WHERE EXISTS (
+		SELECT 1
+		FROM Manager m
+		WHERE e.Employee_ID = m.Manager_ID
+	);
+4.can't we send data using get method & insert the data & post method 
+5. design patterns python
+6. lambda 
+   lambda arguments: expression
+
+
+
+
+
+
+
+Generative AI
+=============
+1. what is the diff between standarization & normalization?
+2. why we need to store vectors in chroma or fasis db why not NOsql db
+3. diff between Textsplitter & Recursivetextsplitter
+4. Pandas & Numpy
+5. why Numpy is faster than List
+6. what is the diff linear & logistic 
+7. can we use logistic regression model for regression 
+8. svm 
+9. diff between langchain & LlamaIndex
+10. when to prefer this on what
+11. pandas what is the limit rows 
+12. why Ollama llama2 model using why can't huggingface llama2 model
+13. how to handle outliers in the datasets
+14. difference between series & dataframe.
+
+React
+=====
+15. Virtual dom 
+16. throttling
+17. forEach , map, filetr, reduce
+18. react.Memo & react.Pure function diff
+19. Context API
+20. action 
+21. HOC 
+22. debouncing & throttling 
+
+
+Django
+1. middlewares
+2. Custom authentication
+3. django hoisting?
+4. drf request & responce flow
+5. what is idemopotent  
+

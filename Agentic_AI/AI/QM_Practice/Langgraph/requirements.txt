@@ -1,0 +1,14 @@
+langchain
+langgraph
+langchain_community
+langchainhub
+ipykernel
+langchain_groq
+langchain_huggingface
+bs4
+tiktoken
+chromadb
+pypdf
+arxiv 
+wikipedia
+python-pptx

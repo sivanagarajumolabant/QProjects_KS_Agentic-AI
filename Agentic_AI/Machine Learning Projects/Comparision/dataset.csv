@@ -1,0 +1,252 @@
+Source_Statement_Type,Source_Statement,Target_Statement_Type,Target_Statement
+Oracle_Statement,"CREATE OR REPLACE PROCEDURE ""BILLING"".""AP_TESTIPSERVICES"" (IV_IPNo in varchar2,
+ OC_Services OUT SYS_REFCURSOR)
+is",Postgres_Statement,"create or replace procedure ap_testipservices( iv_ipno text, oc_services inout refcursor )
+as $body$"
+Oracle_Statement,"/*******************************************************************************************
+/*******************************************************************************************
+/* File Description: This Procedure is to update transaction status in transaction table
+/* after acknowledge and returns updated balance from naturalaccount master and
+/* cashaccount master
+/* Description:
+/* Parameters: IV_IPNo INPUT
+/* OC_Services OUTPUT
+/* Returns:
+/* Date Created: Jun 20, 2007
+/* Author: Tata Consultancy Services LTD && Apollo Health City
+/* Change History:
+/* Date Modified:
+/* Changed By:
+/* Change Description:
+/*******************************************************************************************
+/********************************************************************************************/
+begin
+ open OC_Services for
+ Select *
+ from servicerequestdetails srd
+ where requestid in
+ (select requestid
+ from servicerequest s
+ where s.patientidentifierno = IV_IPNo);",Postgres_Statement,begin set search_path to billing ;open oc_services for select * from servicerequestdetails srd where requestid in( select requestid from servicerequest s where s.patientidentifierno = iv_ipno ) ;
+Oracle_Statement,end AP_TestIPServices;,Postgres_Statement,end ;$body$ language plpgsql ;
+Oracle_Statement,"CREATE OR REPLACE PROCEDURE ""BILLING"".""BILL_APOLLO_TO_CGHS"" ( --IN_PERCENTAGE IN NUMBER := NULL,
+ IN_BILLNO IN PATIENTBILL.BILLNO%TYPE,
+ IN_SERVICETYPEID IN NUMBER) IS",Postgres_Statement,"create or replace procedure bill_apollo_to_cghs( in_billno patientbill.billno%type, in_servicetypeid numeric )
+as $body$"
+Oracle_Statement,"BEGIN
+ UPDATE PATIENTBILLDETAILS PB
+ SET PB.REFTARIFF = (SELECT T.BASECOST
+ FROM TEMPLATETARIFFDETAILS T
+ WHERE T.TEMPLATETARIFFID = 17
+ AND T.SERVICEID = PB.SERVICEID)
+ WHERE PB.BILLNO = IN_BILLNO
+ AND PB.SERVICETYPEID = IN_SERVICETYPEID;",Postgres_Statement,begin set search_path to billing ;update patientbilldetails pb set pb.reftariff =( select t.basecost from templatetariffdetails t where t.templatetariffid = 17 and t.serviceid = pb.serviceid )where pb.billno = in_billno and pb.servicetypeid = in_servicetypeid ;
+Oracle_Statement,"UPDATE PATIENTBILLDETAILS PB
+ SET PB.INDIVIDUALRATE = .9 * PB.REFTARIFF
+ WHERE PB.BILLNO = IN_BILLNO
+ AND PB.SERVICETYPEID = IN_SERVICETYPEID;",Postgres_Statement,update patientbilldetails pb set pb.individualrate =.9 * pb.reftariff where pb.billno = in_billno and pb.servicetypeid = in_servicetypeid ;
+Oracle_Statement,"UPDATE PATIENTBILLDETAILS PB
+ SET PB.REFTARIFF = (SELECT T.BASECOST
+ FROM TEMPLATETARIFFDETAILS T
+ WHERE T.TEMPLATETARIFFID = 2
+ AND T.SERVICEID = PB.SERVICEID)
+ WHERE PB.BILLNO = IN_BILLNO
+ AND PB.SERVICETYPEID = IN_SERVICETYPEID
+ AND PB.INDIVIDUALRATE IS NULL;",Postgres_Statement,update patientbilldetails pb set pb.reftariff =( select t.basecost from templatetariffdetails t where t.templatetariffid = 2 and t.serviceid = pb.serviceid )where pb.billno = in_billno and pb.servicetypeid = in_servicetypeid and pb.individualrate is null ;
+Oracle_Statement,"UPDATE PATIENTBILLDETAILS PB
+ SET PB.INDIVIDUALRATE = .8 * PB.REFTARIFF
+ WHERE PB.BILLNO = IN_BILLNO
+ AND PB.SERVICETYPEID = IN_SERVICETYPEID
+ AND PB.INDIVIDUALRATE IS NULL;",Postgres_Statement,update patientbilldetails pb set pb.individualrate =.8 * pb.reftariff where pb.billno = in_billno and pb.servicetypeid = in_servicetypeid and pb.individualrate is null ;
+Oracle_Statement,END BILL_APOLLO_TO_CGHS;,Postgres_Statement,end ;$body$ language plpgsql ;
+Oracle_Statement,"CREATE OR REPLACE PROCEDURE ""BILLING"".""P_BILLCORRECTAPPROVEDBY"" (IV_FROM IN DATE,
+ IV_TO IN DATE,
+ OUT_CURSOR OUT SYS_REFCURSOR)
+ IS",Postgres_Statement,"create or replace procedure p_billcorrectapprovedby( iv_from timestamp without time zone, iv_to timestamp without time zone, out_cursor inout refcursor )
+as $body$"
+Oracle_Statement,"BEGIN
+ OPEN OUT_CURSOR FOR
+ SELECT DISTINCT BAPWF.WIPBY AS EMPLOYEEID,
+ UM.FIRSTNAME || ' ' || UM.MIDDLENAME || ' ' ||
+ UM.LASTNAME AS EMPLOYEENAME
+ FROM BILLING.AGEINGVALUEAPPROVALWFTRANS BAPWF
+ INNER JOIN BILLING.AGEINGVALUEAPPROVALWORKFLOW AWF ON AWF.BILLINGAPPROVALWFID =
+ BAPWF.BILLINGAPPROVALWFID
+ INNER JOIN BILLING.USERMASTER UM ON UM.EMPLOYEEID = BAPWF.WIPBY
+ WHERE (TRUNC(AWF.CREATEDDATE) BETWEEN IV_FROM AND IV_TO)
+ AND AWF.FLOWNAME = 'Billing Correction';",Postgres_Statement,"begin set search_path to billing ;open out_cursor for select distinct bapwf.wipby as employeeid, um.firstname || ' ' || um.middlename || ' ' || um.lastname as employeename from billing.ageingvalueapprovalwftrans bapwf inner join billing.ageingvalueapprovalworkflow awf on awf.billingapprovalwfid = bapwf.billingapprovalwfid inner join billing.usermaster um on um.employeeid = bapwf.wipby where( date_trunc( 'day', awf.createddate )between iv_from and iv_to )and awf.flowname = 'Billing Correction' ;"
+Oracle_Statement,END P_BILLCORRECTAPPROVEDBY;,Postgres_Statement,end ;$body$ language plpgsql ;
+Oracle_Statement,"CREATE OR REPLACE PROCEDURE ""BILLING"".""P_BILLCORRECTINITIATIONBY"" (IV_CREATEDFROM IN DATE,
+ IV_CREATEDTO IN DATE,
+ OUT_CURSOR OUT SYS_REFCURSOR)
+ IS",Postgres_Statement,"create or replace procedure p_billcorrectinitiationby( iv_createdfrom timestamp without time zone, iv_createdto timestamp without time zone, out_cursor inout refcursor )
+as $body$"
+Oracle_Statement,"BEGIN
+ OPEN OUT_CURSOR FOR
+ SELECT DISTINCT AWF.CREATEDBY AS EMPLOYEEID,
+ UM.FIRSTNAME || ' ' || UM.MIDDLENAME || ' ' ||
+ UM.LASTNAME AS EMPLOYEENAME
+ FROM BILLING.AGEINGVALUEAPPROVALWORKFLOW AWF
+ JOIN BILLING.USERMASTER UM ON UM.EMPLOYEEID = AWF.CREATEDBY
+ WHERE (TRUNC(AWF.CREATEDDATE) BETWEEN IV_CREATEDFROM AND IV_CREATEDTO)
+ AND AWF.FLOWNAME = 'Billing Correction';",Postgres_Statement,"begin set search_path to billing ;open out_cursor for select distinct awf.createdby as employeeid, um.firstname || ' ' || um.middlename || ' ' || um.lastname as employeename from billing.ageingvalueapprovalworkflow awf join billing.usermaster um on um.employeeid = awf.createdby where( date_trunc( 'day', awf.createddate )between iv_createdfrom and iv_createdto )and awf.flowname = 'Billing Correction' ;"
+Oracle_Statement,END P_BILLCORRECTINITIATIONBY;,Postgres_Statement,end ;$body$ language plpgsql ;
+Oracle_Statement,"CREATE OR REPLACE PROCEDURE ""BILLING"".""P_BILLINGCANCELLATIONREPORT"" (IV_FROMDATE IN Date,
+ IV_TODATE IN Date,
+ IV_LOCATIONID IN Billing.patientbill.Locationid%type,
+ IV_PAYERTYPEID IN Billing.AGEINGVALUEWORKFLOWMAP.Payertypeid%type,
+ IV_INTIATEDBY IN Billing.AGEINGVALUEAPPROVALWORKFLOW.Createdby%type,
+ IV_APPROVEDBY IN Billing.AGEINGVALUEAPPROVALWFTRANS.Wipby%type,
+ OP_CURSOR OUT Sys_refcursor) Is",Postgres_Statement,"create or replace procedure p_billingcancellationreport( iv_fromdate timestamp without time zone, iv_todate timestamp without time zone, iv_locationid billing.patientbill.locationid%type, iv_payertypeid billing.ageingvalueworkflowmap.payertypeid%type, iv_intiatedby billing.ageingvalueapprovalworkflow.createdby%type, iv_approvedby billing.ageingvalueapprovalwftrans.wipby%type, op_cursor inout refcursor )
+as $body$ declare x record ;"
+Oracle_Statement,"BEGIN
+ EXECUTE IMMEDIATE 'Truncate table Billing.GTT_Billcancellednewbill';",Postgres_Statement,begin set search_path to billing ;execute 'Truncate table Billing.GTT_Billcancellednewbill' ;
+Oracle_Statement,"FOR X IN (select pb.billno, pb.billdate, pb.patientidentifiernumber
+ from billing.patientbill pb
+ where pb.patientidentifiernumber in
+ (select substr(pb.patientidentifiernumber, 4, 11)
+ from billing.patientbill pb
+ inner join Billing.AGEINGVALUEAPPROVALWORKFLOW awf on awf.billno =
+ pb.billno
+ where (trunc(awf.createddate) between IV_FROMDATE and
+ IV_TODATE)
+ and pb.patientidentifiernumber like '%CAN%')) loop
+ Insert into Billing.GTT_Billcancellednewbill
+ Values
+ (X.Billno, X.Billdate, X.PATIENTIDENTIFIERNUMBER);",Postgres_Statement,"for x in( select pb.billno, pb.billdate, pb.patientidentifiernumber from billing.patientbill pb where pb.patientidentifiernumber in( select substr( pb.patientidentifiernumber, 4, 11 )from billing.patientbill pb inner join billing.ageingvalueapprovalworkflow awf on awf.billno = pb.billno where( date_trunc( 'day', awf.createddate )between iv_fromdate and iv_todate )and pb.patientidentifiernumber like '%CAN%' ) )loop insert into billing.gtt_billcancellednewbill values( x.billno, x.billdate, x.patientidentifiernumber ) ;"
+Oracle_Statement,end loop;,Postgres_Statement,end loop ;
+Oracle_Statement,"OPEN OP_CURSOR FOR
+ SELECT DISTINCT CA.LEVELDETAILNAME as Location,
+ AWF.Billno as BillNumber,
+ PB.Billdate as Billdate,
+ NVL(C.Customername, 'NA') as Payer,
+ BC.REGISTRATIONNO as UHID,
+ PB.Patientidentifiernumber as IPNUMBER,
+ PB.Patientname,
+ ROUND(PB.Totalbillamount) as BillAmount,
+ AWF.OLDBILLINGAMOUNT as CancelledAmount,
+ AWF.COMPLETEDON as DateofCancellation,
+ UM.FIRSTNAME || ' ' || UM.MIDDLENAME || ' ' ||
+ UM.LASTNAME as Cancelledby,
+ NVL(Lov.Lovdetaildescription, Lov.Lovdetailvalue) as Reasoncode,
+ BC.Remarks,
+ NB.BILLNO as NEWBILLNUMBER,
+ NB.BILLDATE as DateofNewbill,
+ (SELECT LISTAGG(UM.FIRSTNAME || ' ' || UM.MIDDLENAME || ' ' ||
+ UM.LASTNAME,
+ ',') WITHIN
+ GROUP(
+ order by BAPWF.Billingapwftransid asc)
+ from BILLING.AGEINGVALUEAPPROVALWFTRANS bapwf
+ inner join BILLING.AGEINGVALUEAPPROVALWORKFLOW AWF on AWF.BILLINGAPPROVALWFID =
+ BAPWF.BILLINGAPPROVALWFID
+ inner join billing.usermaster um on um.EMPLOYEEID =
+ BAPWF.Wipby
+ where AWf.Billno = BC.Billno
+ and AWF.FLOWNAME = 'Billing Cancellation') as APPROVEDBY,
+ AWF.Workflowid
+ FROM BILLING.AGEINGVALUEAPPROVALWORKFLOW AWF
+ INNER JOIN BILLING.AGEINGVALUEAPPROVALWFTRANS BAPWF ON AWF.BILLINGAPPROVALWFID =
+ BAPWF.BILLINGAPPROVALWFID
+ INNER JOIN BILLING.Billcancellation BC ON BC.BILLNO = AWF.BILLNO
+ INNER Join Billing.lovdetail lov on lov.lovdetailid =
+ BC.Cancelreasonid
+ INNER JOIN BILLING.PATIENTBILL PB ON PB.billno = BC.Billno
+ Left Outer join Billing.GTT_Billcancellednewbill nb on pb.patientidentifiernumber =
+ 'CAN' ||
+ nb.ipno
+ left outer JOIN CRM.CUSTOMERS C ON C.CUSTOMERID = pb.primarypayerid
+ INNER JOIN BILLING.USERMASTER UM ON UM.EMPLOYEEID = BAPWF.CREATEDBY
+ INNER JOIN EHIS.COA_STRUCT_DETAILS CA ON CA.CHARTID = AWF.LOCATIONID
+ where (trunc(awf.createddate) between IV_FROMDATE and IV_TODATE)
+ and (IV_LOCATIONID is Null Or pb.locationid = IV_LOCATIONID)
+ and (IV_PAYERTYPEID is Null Or C.CUSTOMERID = IV_PAYERTYPEID)
+ and (IV_INTIATEDBY is Null Or awf.createdby = IV_INTIATEDBY)
+ and (IV_APPROVEDBY is Null Or bapwf.wipby = IV_APPROVEDBY)
+ and awf.flowname = 'Billing Cancellation'
+ and awf.status = 1
+ order by DateofCancellation asc;",Postgres_Statement,"open op_cursor for select distinct ca.leveldetailname as location, awf.billno as billnumber, pb.billdate as billdate, coalesce( c.customername, 'NA' )
+as payer, bc.registrationno as uhid, pb.patientidentifiernumber as ipnumber, pb.patientname, round( pb.totalbillamount )
+as billamount, awf.oldbillingamount as cancelledamount, awf.completedon as dateofcancellation, um.firstname || ' ' || um.middlename || ' ' || um.lastname as cancelledby, coalesce( lov.lovdetaildescription, lov.lovdetailvalue )
+as reasoncode, bc.remarks, nb.billno as newbillnumber, nb.billdate as dateofnewbill,( select listagg( um.firstname || ' ' || um.middlename || ' ' || um.lastname, ',' )within group( order by bapwf.billingapwftransid asc )from billing.ageingvalueapprovalwftrans bapwf inner join billing.ageingvalueapprovalworkflow awf on awf.billingapprovalwfid = bapwf.billingapprovalwfid inner join billing.usermaster um on um.employeeid = bapwf.wipby where awf.billno = bc.billno and awf.flowname = 'Billing Cancellation' )
+as approvedby, awf.workflowid from billing.ageingvalueapprovalworkflow awf inner join billing.ageingvalueapprovalwftrans bapwf on awf.billingapprovalwfid = bapwf.billingapprovalwfid inner join billing.billcancellation bc on bc.billno = awf.billno inner join billing.lovdetail lov on lov.lovdetailid = bc.cancelreasonid inner join billing.patientbill pb on pb.billno = bc.billno left outer join billing.gtt_billcancellednewbill nb on pb.patientidentifiernumber = 'CAN' || nb.ipno left outer join crm.customers c on c.customerid = pb.primarypayerid inner join billing.usermaster um on um.employeeid = bapwf.createdby inner join ehis.coa_struct_details ca on ca.chartid = awf.locationid where( date_trunc( 'day', awf.createddate )between iv_fromdate and iv_todate )and( iv_locationid is null or pb.locationid = iv_locationid )and( iv_payertypeid is null or c.customerid = iv_payertypeid )and( iv_intiatedby is null or awf.createdby = iv_intiatedby )and( iv_approvedby is null or bapwf.wipby = iv_approvedby )and awf.flowname = 'Billing Cancellation' and awf.status = 1 order by dateofcancellation asc ;"
+Oracle_Statement,END P_BILLINGCANCELLATIONREPORT;,Postgres_Statement,end ;$body$ language plpgsql ;
+Oracle_Statement,"CREATE OR REPLACE PROCEDURE ""BILLING"".""P_BILLINGCORRECTIONREPORT"" (IV_FROMDATE IN DATE,
+ IV_TODATE IN DATE,
+ IV_LOCATIONID IN BILLING.PATIENTBILL.LOCATIONID%TYPE,
+ IV_PAYERTYPEID IN BILLING.AGEINGVALUEWORKFLOWMAP.PAYERTYPEID%TYPE,
+ IV_INTIATEDBY IN BILLING.AGEINGVALUEAPPROVALWORKFLOW.CREATEDBY%TYPE,
+ IV_APPROVEDBY IN BILLING.AGEINGVALUEAPPROVALWFTRANS.WIPBY%TYPE,
+ OUT_CURSOR OUT SYS_REFCURSOR) IS",Postgres_Statement,"create or replace procedure p_billingcorrectionreport( iv_fromdate timestamp without time zone, iv_todate timestamp without time zone, iv_locationid billing.patientbill.locationid%type, iv_payertypeid billing.ageingvalueworkflowmap.payertypeid%type, iv_intiatedby billing.ageingvalueapprovalworkflow.createdby%type, iv_approvedby billing.ageingvalueapprovalwftrans.wipby%type, out_cursor inout refcursor )
+as $body$"
+Oracle_Statement,"BEGIN
+ OPEN OUT_CURSOR FOR
+ SELECT DISTINCT CA.LEVELDETAILNAME AS LOCATION,
+ C.CUSTOMERNAME AS PAYER,
+ PBD.UHID AS UHID,
+ PB.PATIENTIDENTIFIERNUMBER AS IPNUMBER,
+ PB.PATIENTNAME,
+ AWF.BILLNO AS BILLNUMBER,
+ PB.BILLDATE AS BILLDATE,
+ PBDD.SERVICEID AS SERVICECODE,
+ PBDD.SERVICENAME,
+ PB.BILLNO AS NEWBILLNUMBER,
+ AWF.CREATEDDATE AS DATEOFMODIFICATION,
+ AWF.OLDBILLINGAMOUNT AS ORIGINALBILLAMOUNT,
+ AWF.NEWBILLINGAMOUNT AS MODIFIEDBILLAMOUNT,
+ PBDD.FINALTARIFF AS ORIGINALSERVICEAMOUNT,
+ PBDD.AMENDMENTAMOUNT AS SERVICEAMOUNTMODIFIED,
+ PBDD.DIFFAMOUNT AS AMOUNTMODIFIED,
+ PBD.REASONFORCORRECTION AS REASONCODE,
+ PBDD.REMARKS,
+ UM.FIRSTNAME || ' ' || UM.MIDDLENAME || ' ' ||
+ UM.LASTNAME AS MODIFIEDBY,
+ UM.FIRSTNAME || ' ' || UM.MIDDLENAME || ' ' ||
+ UM.LASTNAME AS INITIATEDBY,
+ (SELECT LISTAGG(UM.FIRSTNAME || ' ' || UM.MIDDLENAME || ' ' ||
+ UM.LASTNAME,
+ ',') WITHIN
+ GROUP(
+ ORDER BY BAPWF.BILLINGAPWFTRANSID ASC)
+ FROM BILLING.AGEINGVALUEAPPROVALWFTRANS BAPWF
+ INNER JOIN BILLING.AGEINGVALUEAPPROVALWORKFLOW AWF ON AWF.BILLINGAPPROVALWFID =
+ BAPWF.BILLINGAPPROVALWFID
+ INNER JOIN BILLING.USERMASTER UM ON UM.EMPLOYEEID =
+ BAPWF.WIPBY
+ WHERE AWF.BILLNO = PBD.BILLNO
+ AND AWF.FLOWNAME = 'Billing Correction') AS APPROVEDBY,
+ AWF.WORKFLOWID
+ FROM BILLING.AGEINGVALUEAPPROVALWORKFLOW AWF
+ INNER JOIN BILLING.AGEINGVALUEAPPROVALWFTRANS BAPWF ON AWF.BILLINGAPPROVALWFID =
+ BAPWF.BILLINGAPPROVALWFID
+ INNER JOIN BILLING.PATIENTBILL_DRAFT PBD ON PBD.BILLNO = AWF.BILLNO
+ INNER JOIN BILLING.PATIENTBILL PB ON PB.PATIENTIDENTIFIERNUMBER =
+ PBD.PATIENTIDENTIFIERNO
+ INNER JOIN BILLING.PATIENTBILLDETAILS_DRAFT PBDD ON PBDD.BILLNO =
+ AWF.BILLNO
+ INNER JOIN CRM.CUSTOMERS C ON C.CUSTOMERID = PBD.PAYERID
+ INNER JOIN BILLING.USERMASTER UM ON UM.EMPLOYEEID = BAPWF.CREATEDBY
+ INNER JOIN EHIS.COA_STRUCT_DETAILS CA ON CA.CHARTID = AWF.LOCATIONID
+ WHERE TRUNC(AWF.CREATEDDATE) BETWEEN IV_FROMDATE AND IV_TODATE
+ AND (IV_LOCATIONID IS NULL OR AWF.LOCATIONID = IV_LOCATIONID)
+ AND (IV_PAYERTYPEID IS NULL OR C.CUSTOMERID = IV_PAYERTYPEID)
+ AND (IV_INTIATEDBY IS NULL OR AWF.CREATEDBY = IV_INTIATEDBY)
+ AND (IV_APPROVEDBY IS NULL OR BAPWF.WIPBY = IV_APPROVEDBY)
+ AND AWF.FLOWNAME = 'Billing Correction'
+ AND AWF.STATUS = 1
+ AND PBDD.AMENDMENTAMOUNT IS NOT NULL
+ ORDER BY DATEOFMODIFICATION ASC;",Postgres_Statement,"begin set search_path to billing ;open out_cursor for select distinct ca.leveldetailname as location, c.customername as payer, pbd.uhid as uhid, pb.patientidentifiernumber as ipnumber, pb.patientname, awf.billno as billnumber, pb.billdate as billdate, pbdd.serviceid as servicecode, pbdd.servicename, pb.billno as newbillnumber, awf.createddate as dateofmodification, awf.oldbillingamount as originalbillamount, awf.newbillingamount as modifiedbillamount, pbdd.finaltariff as originalserviceamount, pbdd.amendmentamount as serviceamountmodified, pbdd.diffamount as amountmodified, pbd.reasonforcorrection as reasoncode, pbdd.remarks, um.firstname || ' ' || um.middlename || ' ' || um.lastname as modifiedby, um.firstname || ' ' || um.middlename || ' ' || um.lastname as initiatedby,( select listagg( um.firstname || ' ' || um.middlename || ' ' || um.lastname, ',' )within group( order by bapwf.billingapwftransid asc )from billing.ageingvalueapprovalwftrans bapwf inner join billing.ageingvalueapprovalworkflow awf on awf.billingapprovalwfid = bapwf.billingapprovalwfid inner join billing.usermaster um on um.employeeid = bapwf.wipby where awf.billno = pbd.billno and awf.flowname = 'Billing Correction' )
+as approvedby, awf.workflowid from billing.ageingvalueapprovalworkflow awf inner join billing.ageingvalueapprovalwftrans bapwf on awf.billingapprovalwfid = bapwf.billingapprovalwfid inner join billing.patientbill_draft pbd on pbd.billno = awf.billno inner join billing.patientbill pb on pb.patientidentifiernumber = pbd.patientidentifierno inner join billing.patientbilldetails_draft pbdd on pbdd.billno = awf.billno inner join crm.customers c on c.customerid = pbd.payerid inner join billing.usermaster um on um.employeeid = bapwf.createdby inner join ehis.coa_struct_details ca on ca.chartid = awf.locationid where date_trunc( 'day', awf.createddate )between iv_fromdate and iv_todate and( iv_locationid is null or awf.locationid = iv_locationid )and( iv_payertypeid is null or c.customerid = iv_payertypeid )and( iv_intiatedby is null or awf.createdby = iv_intiatedby )and( iv_approvedby is null or bapwf.wipby = iv_approvedby )and awf.flowname = 'Billing Correction' and awf.status = 1 and pbdd.amendmentamount is not null order by dateofmodification asc ;"
+Oracle_Statement,END P_BILLINGCORRECTIONREPORT;,Postgres_Statement,end ;$body$ language plpgsql ;
+,,Postgres_Statement,
+,,Postgres_Statement,
+,,Postgres_Statement,
+,,Postgres_Statement,
+,,Postgres_Statement,
+,,Postgres_Statement,
+,,Postgres_Statement,
+,,Postgres_Statement,
+,,Postgres_Statement,
+,,Postgres_Statement,
+,,Postgres_Statement,
+,,Postgres_Statement,
