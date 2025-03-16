@@ -1,0 +1,13 @@
+import_file==1.11
+pandas==2.1.0
+numpy==1.26.2
+requests==2.32.3
+XlsxWriter==3.2.0
+openpyxl==3.1.2
+rediswq==0.1
+bs4==0.0.2
+psycopg2==2.9.9
+cx-Oracle==8.3.0
+joblib
+cryptography
+pycryptodome

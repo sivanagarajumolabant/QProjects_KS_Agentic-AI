@@ -1,0 +1,4 @@
+docker run -it --rm -v %CD%:/app dev-env  -- windows
+docker run -it --rm -v $(pwd):/app dev-env -- linux/mac
+
+docker build -t dev-env . -- build dockerimage 
