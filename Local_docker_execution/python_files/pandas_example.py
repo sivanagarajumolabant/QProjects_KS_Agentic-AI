@@ -7,4 +7,5 @@ data = {
 }
 
 df = pd.DataFrame(data)
+df.to_csv('pandas.csv', index=False)
 print(df)
