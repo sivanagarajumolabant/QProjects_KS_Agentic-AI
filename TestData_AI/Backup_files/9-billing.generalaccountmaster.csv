@@ -1,0 +1,7 @@
+cumdebitamount,cumcreditamount,accountstatus,accountcreationdate,accountclosedate,locationid,amountblockedip,amountblockedop,currencycode,customerid,companyid,createdby,createddate,accountno,waiverallowed,updateddate,updatedby,accounttype,cumminimumdeposit,packagedueamount,remarks
+0,0,A,10:13.0,,10101,0,0,,,,929989,10:13.0,AC01.0000000119,,,,,0,,
+0,0,A,09:59.1,,10101,0,0,,,,929989,09:59.1,AC01.0000000117,,,,,0,,
+0,0,A,09:43.4,,10101,0,0,,,,929989,09:43.4,AC01.0000000115,,,,,0,,
+0,0,A,09:17.8,,10101,0,0,,,,929989,09:17.8,AC01.0000000111,,,,,0,,
+0,0,A,09:04.2,,10101,0,0,,,,929989,09:04.2,AC01.0000000109,,,,,0,,
+0,0,A,08:49.5,,10101,0,0,,,,929989,08:49.5,AC01.0000000107,,,,,0,,

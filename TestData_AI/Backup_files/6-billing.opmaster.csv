@@ -1,0 +1,7 @@
+"opmasterid","locationid","registrationno","patientidentifierno","patientname","billingtypeid","patientserviceid","createdby","createddate","updatedby","updateddate","patienttypeid","primarydoctorid","referraldoctorid","cusotmerid","agreementid","visitno","wardsopnumber","isgenfromreg","deleteflag","otrequestnumber","serviceid","serviceamount","prism_flag"
+63,"10101",AC01.0000000107,AC01OPP35,yiddish_stem  A,1,2,"929989",2025-03-10 11:08:49.513,,,1,,,,,,,"0",1,,,,
+65,"10101",AC01.0000000109,AC01OPP36,swedish_stem  A,1,2,"929989",2025-03-10 11:09:04.213,,,1,,,,,,,"0",1,,,,
+67,"10101",AC01.0000000111,AC01OPP37,simple  A,1,2,"929989",2025-03-10 11:09:17.832,,,1,,,,,,,"0",1,,,,
+71,"10101",AC01.0000000115,AC01OPP39,spanish_stem  A,1,2,"929989",2025-03-10 11:09:43.356,,,1,,,,,,,"0",1,,,,
+73,"10101",AC01.0000000117,AC01OPP40,norwegian_stem  A,1,2,"929989",2025-03-10 11:09:59.115,,,1,,,,,,,"0",1,,,,
+75,"10101",AC01.0000000119,AC01OPP41,arabic_stem  A,1,2,"929989",2025-03-10 11:10:13.046,,,1,,,,,,,"0",1,,,,
