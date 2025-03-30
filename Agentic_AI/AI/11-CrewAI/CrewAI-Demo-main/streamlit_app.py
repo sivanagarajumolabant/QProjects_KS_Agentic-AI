@@ -47,9 +47,8 @@ with st.sidebar:
 
 def generate_content(topic):
     llm = LLM(
-        model="gemini/gemini-2.0-flash",
+    model="groq/gemma2-9b-it"
     )
-
     search_tool = SerperDevTool(n_results=1)
 
     # First Agent: Senior Research Analyst
