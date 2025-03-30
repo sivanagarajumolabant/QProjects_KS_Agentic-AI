@@ -1,8 +1,8 @@
 import os, re, json, pandas as pd, openai, random
 # Azure OpenAI Configuration
-AZURE_OAI_KEY = "AYxiyqI41yG0k6Yh6eFJNNBg2yy8iSwnAgSd4beaFT3qMyTJjWmrJQQJ99ALACYeBjFXJ3w3AAABACOGHzA8"
+AZURE_OAI_KEY = "EzqbdX8l2m0PzedkWSxkjESB5wGGDseac0Aq8SmfthOIqZ6jweNQJQQJ99BCACYeBjFXJ3w3AAABACOG5ZKu"
 AZURE_OAI_MODEL = "gpt-4o"
-AZURE_OPENAI_ENDPOINT = "https://az-pii.openai.azure.com/"
+AZURE_OPENAI_ENDPOINT = "https://qmig-open-ai.openai.azure.com/"
 AZURE_OPENAI_VERSION = "2023-08-01-preview"
 
 
@@ -933,7 +933,7 @@ def infer_relationships(tables):
     return relationships
 
 # Function to generate data for a single table in batches, using all previous data
-def generate_data_for_table(table_name, table_df, detected_relationships, records_per_batch=5, total_records=100):
+def generate_data_for_table(table_name, table_df, detected_relationships, records_per_batch=10, total_records=100):
     all_generated_data = []  # List to store all generated data
     previous_generated_data = []  # Keep track of all previous batches' records
     
@@ -951,7 +951,7 @@ def generate_data_for_table(table_name, table_df, detected_relationships, record
 
         Detected Relationships:
         {json.dumps(detected_relationships, indent=2)}
-        
+
         Table Structure & Data Patterns:
         {{ "file_name": "{table_name}", "schema": {{
             "columns": {json.dumps(list(table_df.columns))},
@@ -963,8 +963,9 @@ def generate_data_for_table(table_name, table_df, detected_relationships, record
         - Keep the same column names and data types.
         - Maintain primary key uniqueness and foreign key relationships.
         - Distribute values similarly to the original dataset but ensure that the generated values do not match any existing values in the input files.
-        - Ensure the generated data is different from all previously generated data: {previous_data}
-        - Ensure that the generated data respects all constraints and column types as defined in the DDL: {ddls}
+        - Ensure the generated data is different from all previously generated data : {previous_data}
+        - The output must contain exactly **{records_per_batch} records**, no more and no less.
+        - please use the DDL's {ddls} for the relationships if required to understand more better including datatypes.
         - Return the output as a complete and valid JSON object with this structure: {{ {table_name}: [{{column1: value, column2: value, ...}}] }}. Ensure the response is properly closed and contains all necessary brackets and commas.
         """
         
@@ -984,7 +985,7 @@ def generate_data_for_table(table_name, table_df, detected_relationships, record
             try:
                 generated_data = json.loads(response_text)
                 new_records = generated_data[table_name]  # Extract the batch of records
-
+                print(len(new_records), ' Length of Batch Records')
                 # Add the new batch of records to all generated data
                 all_generated_data.extend(new_records)
                 previous_generated_data.extend(new_records)  # Add to the previous batch data for next iteration
@@ -1000,7 +1001,9 @@ def generate_data_for_table(table_name, table_df, detected_relationships, record
         except Exception as e:
             print(f"Error generating data for {table_name} (batch {batch_num+1}): {e}")
             return None
-
+    if len(all_generated_data) < total_records:
+        print('Attempted to generate less records than requested')
+        generate_data_for_table(table_name, table_df, detected_relationships, records_per_batch=5, total_records=100)
     # Return the final generated data
     return {table_name: all_generated_data}
 
@@ -1015,10 +1018,6 @@ for file_name, df in tables.items():
     generated_data = generate_data_for_table(file_name, df, detected_relationships)
 
     if generated_data:
-        print('=======================================')
-        print(generated_data)
-        print('=======================================')
-        # Convert JSON response to DataFrame and save as a CSV file
         output_path = os.path.join(output_dir, file_name)
         print(f"Saving generated data for {file_name} to {output_path}...")
         generated_df = pd.DataFrame(generated_data[file_name])
