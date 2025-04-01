@@ -20,9 +20,10 @@ def decorator_fun(func):
         return return_values
 
     return sample
+
 @decorator_fun
 def sum_numbers(a, b):
     print('execution sum numbers')
     return a * b
 
-sum_numbers(4,3)
+print(sum_numbers(4,3))

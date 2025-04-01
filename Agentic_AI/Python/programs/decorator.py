@@ -7,7 +7,7 @@ def addition(func):
 
 @addition
 def simple_fun(a, b):
-    return a+ b
+    return a + b
 
 print(simple_fun(4,5))
 

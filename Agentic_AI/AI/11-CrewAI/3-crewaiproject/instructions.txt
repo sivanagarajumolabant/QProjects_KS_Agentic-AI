@@ -1,0 +1,9 @@
+crewai create crew <projectname>
+crewai install
+crewai run
+
+
+pythonic way:
+ pip install crewai crewai-tool
+ pip install -e .
+ python src/crewaiproject/main.py
