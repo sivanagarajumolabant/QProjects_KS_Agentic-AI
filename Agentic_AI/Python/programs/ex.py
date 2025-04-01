@@ -1,6 +1,7 @@
 # list = [2, 4, 5, 6, 9]
 
 x = lambda a, b: a * b
+print(type(x))
 print(x(5,6))
 
 your_string = "aaabbbccaabb"
@@ -12,14 +13,16 @@ for index, loop in enumerate(your_string):
     current = loop
     count = count + 1
     if index == len(your_string) - 1:
-        current = str(count * len(current)) + current
+        current = str(count) + current
         mod_list.append(current)
         count = 0
     else:
         if your_string[index + 1] == current:
             continue
         else:
-            current = str(count * len(current)) + current
+            print(current)
+            current = str(count) + current
+            print(current)
             mod_list.append(current)
             count = 0
 
@@ -46,5 +49,7 @@ for i in range(len(inp)):
     for j in range(i+1, len(inp)):
         if inp[i][1]> inp[j][1]:
             inp[i],inp[j] = inp[j],inp[i]
+            
+            
 
 print(inp)

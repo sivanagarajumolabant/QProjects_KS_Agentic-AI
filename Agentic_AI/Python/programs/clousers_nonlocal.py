@@ -45,6 +45,7 @@ def outer_function(x):
 # Creating a closure by calling outer_function with a value for `x`
 closure = outer_function(10)
 print(closure)
+print(type(closure))
 
 # Now, even though outer_function has finished executing, 
 # the inner_function still remembers the value of `x` (which is 10).

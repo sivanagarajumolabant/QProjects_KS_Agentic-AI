@@ -9,3 +9,11 @@ for i in range(n):
             listdata[j], listdata[j + 1] = listdata[j + 1], listdata[j]
 
 print(listdata)  # Output: [-1, 0, 1, 3, 4, 82]
+
+
+for i in range(0, len(listdata)):
+    for j in range(i+1, len(listdata)):
+        if listdata[i] > listdata[j]:
+            listdata[i], listdata[j] = listdata[j], listdata[i]
+            
+print(listdata)

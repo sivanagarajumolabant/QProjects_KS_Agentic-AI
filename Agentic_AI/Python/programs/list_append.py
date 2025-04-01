@@ -1,4 +1,5 @@
 def list_data(value, lst=[]):
+    # print(lst)
     lst.append(value)
     return lst
 
