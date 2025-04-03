@@ -382,9 +382,9 @@ client = openai.AzureOpenAI(
 
 
 # Define file paths
-files = 'C:/QProjects/TestData_AI/Input_Files'
+files = 'C:/QProjects/TestData_AI/New_data'
 input_files = [file for file in os.listdir(files)]
-output_dir = "generated_test_data"
+output_dir = "generated_test_data_new_data"
 os.makedirs(output_dir, exist_ok=True)
 
 # Read all tables into DataFrames
@@ -416,7 +416,7 @@ def infer_relationships(tables):
     return relationships
 
 # Function to generate data for a single table in batches, using all previous data
-def generate_data_for_table(all_generated_data, previous_generated_data, table_name, table_df, detected_relationships, records_per_batch=10, total_records=100):
+def generate_data_for_table(all_generated_data, previous_generated_data, table_name, table_df, detected_relationships, records_per_batch=5, total_records=20):
     
     # Number of batches we need
     num_batches = total_records // records_per_batch
