@@ -1,0 +1,33 @@
+CREATE TABLE registration.addressmaster (
+	registrationid numeric(19) NOT NULL,
+	addresstypeid numeric(10) NOT NULL,
+	street varchar(200) NULL,
+	locality varchar(200) NULL,
+	country numeric(19) NULL,
+	state numeric(19) NULL,
+	district numeric(19) NULL,
+	city numeric(19) NULL,
+	address1 varchar(500) NULL,
+	address2 varchar(500) NULL,
+	residencenumber varchar(100) NULL,
+	officenumber varchar(100) NULL,
+	"extension" varchar(100) NULL,
+	mobilenumber varchar(100) NULL,
+	emergencynumber varchar(100) NULL,
+	residencefaxnumber varchar(100) NULL,
+	officefaxnumber varchar(100) NULL,
+	primaryemail varchar(200) NULL,
+	alternateemail varchar(200) NULL,
+	pincode varchar(40) NULL,
+	contactnumber1 varchar(100) NULL,
+	contactnumber2 varchar(100) NULL,
+	startdate timestamp NULL,
+	enddate timestamp NULL,
+	status numeric(10) NULL,
+	updatedby varchar(100) NULL,
+	updateddate timestamp NULL,
+	flexifield1 varchar(100) NULL,
+	flexifield2 varchar(100) NULL
+);
+
+ALTER TABLE registration.addressmaster ADD CONSTRAINT fk_taddtype_taddress FOREIGN KEY (addresstypeid) REFERENCES registration.addresstypemaster(addresstypeid);

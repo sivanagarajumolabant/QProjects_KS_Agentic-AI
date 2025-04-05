@@ -1,0 +1,21 @@
+CREATE TABLE registration.patientvisadetail (
+	registrationid numeric(19) NOT NULL,
+	nationality varchar(200) NULL,
+	internationalpatient varchar(200) NULL,
+	countryissued numeric(10) NULL,
+	passportnumber varchar(100) NULL,
+	passportissuedate timestamp NULL,
+	passportexpirydate timestamp NULL,
+	visatype varchar(100) NULL,
+	visaissuingauthority varchar(100) NULL,
+	visaissuedate timestamp NULL,
+	visaexpirydate timestamp NULL,
+	startdate timestamp NULL,
+	enddate timestamp NULL,
+	status numeric(10) NULL,
+	updatedby varchar(100) NULL,
+	updateddate timestamp NULL,
+	flexifield1 varchar(100) NULL,
+	flexifield2 varchar(100) NULL,
+	CONSTRAINT pk_patientvisadetail PRIMARY KEY (registrationid)
+);
