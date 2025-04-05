@@ -1,6 +1,9 @@
 registrationid,registrationtype,registrationsource,registrationdescription,updateddate,updatedby
+10101112,2,ONLINEPORTAL,Web-based registration,2023-10-15 14:45:22.567,admin_user
 10101112,2,ONLINE,WEB PORTAL,2023-10-15 14:45:22.567,admin_user
 10101112,2,ONLINEPORTAL,Web Registration,2023-10-05 14:45:22.567,admin_user
-10101112,1,ONLINE,WEBSITE,2023-10-15 14:45:22.567,admin_user
 10101112,2,ONLINEPORTAL,Self-registration via portal,2023-10-05 14:45:22.567,admin_user
-10101112,2,ONLINEPORTAL,Self-registration via portal,2023-10-05 14:45:22.567,system_admin
+10101112,1,ONLINE,WEBPORTAL,2023-10-15 14:45:22.567,admin_user
+10101112,1,ONLINE,WEBSITE,2023-10-15 14:45:22.567,admin_user
+10101112,1,ONLINE,WEB PORTAL,2023-10-15 14:45:22.567,admin_user
+10101112,2,ONLINEPORTAL,Web Registration,2023-10-15 14:45:22.567,admin_user
