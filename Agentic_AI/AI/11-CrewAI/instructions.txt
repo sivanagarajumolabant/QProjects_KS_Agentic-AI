@@ -1,0 +1,22 @@
+CREW AI
+=======
+crew:
+
+1. crewai create crew <crew name>
+2. crewai install
+3. crewai run
+
+flows:
+
+1. crewai create flow <flow name>
+2. crewai install
+3. crewai flow kickoff
+
+
+https://github.com/sourangshupal/CrewAI-Demo
+https://github.com/sourangshupal/Trip-Planner-using-CrewAI
+https://docs.crewai.com/guides/crews/first-crew
+https://github.com/sourangshupal/Trip-Planner-using-CrewAI
+https://github.com/sourangshupal/agentic_rag_crewai
+https://github.com/sourangshupal/Crewai-Flows-Researcher-Content
+https://github.com/sourangshupal/crewai-lead-score-flow

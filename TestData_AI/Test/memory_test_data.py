@@ -7,6 +7,7 @@ from langchain_core.chat_history import BaseChatMessageHistory
 from langchain_core.runnables.history import RunnableWithMessageHistory
 from langchain.schema import HumanMessage, SystemMessage
 from dotenv import load_dotenv
+from langchain_groq import ChatGroq
 
 # Store to maintain session-based histories
 store = {}
@@ -29,6 +30,7 @@ model = AzureChatOpenAI(
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),
     model_name = "gpt-4o"
 )
+# model=ChatGroq(model="llama-3.3-70b-versatile")
 
 # # Function to infer relationships
 # def infer_relationships(tables):
@@ -106,7 +108,7 @@ def print_session_history(session_id):
 # Track all generated primary keys across tables
 # generated_primary_keys = {}
 
-def generate_data_for_table_with_history(all_generated_data, table_name, table_df, detected_relationships, records_per_batch=5, total_records=20):
+def generate_data_for_table_with_history(all_generated_data, table_name, table_df, detected_relationships, records_per_batch=5, total_records=25):
     # Identify primary key for this table
     primary_key = None
     for rel in detected_relationships:
@@ -166,6 +168,7 @@ def generate_data_for_table_with_history(all_generated_data, table_name, table_d
         # Send the prompt to Langchain OpenAI model with global session-specific message history
         try:
             response = with_message_history.invoke(messages, config={"configurable": {"session_id": global_session_id}})
+            print(response)
             response_text = response.content
             
             # print_session_history(global_session_id)
@@ -187,13 +190,16 @@ def generate_data_for_table_with_history(all_generated_data, table_name, table_d
         except Exception as e:
             print(f"Error generating data for {table_name} (batch {batch_num + 1}): {e}")
             continue
-
+    
+    # if len(all_generated_data) < total_records:
+    #     print('Attempted to generate less records than requested')
+    #     all_generated_data = generate_data_for_table_with_history(all_generated_data, table_name, table_df, detected_relationships, records_per_batch=5, total_records=100)
     return all_generated_data
 
 # Define file paths and read tables
 files = 'C:/QProjects/TestData_AI/New_data'
 input_files = [file for file in os.listdir(files)]
-output_dir = "generated_test_data_new_data_memory"
+output_dir = "generated_test_data_new_data_memory1"
 os.makedirs(output_dir, exist_ok=True)
 
 # Read all tables into DataFrames
@@ -221,7 +227,7 @@ for table_name in tables:
         df, 
         relationships,
         records_per_batch=5,
-        total_records=20
+        total_records=25
     )
     
     if generated_records:
