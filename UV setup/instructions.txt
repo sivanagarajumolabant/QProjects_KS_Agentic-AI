@@ -128,3 +128,5 @@ uv venv <name>  - test
     - deactivate
 
 source .venv/bin/activate
+uv add "mcp[cli]" --active
+uv run --active main.py
