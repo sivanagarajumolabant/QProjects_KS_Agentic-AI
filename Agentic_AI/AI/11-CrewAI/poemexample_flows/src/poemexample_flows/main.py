@@ -4,11 +4,11 @@ from random import randint
 from pydantic import BaseModel
 
 from crewai.flow import Flow, listen, start
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
 from poemexample_flows.crews.poem_crew.poem_crew import PoemCrew
 
-load_dotenv()
+# load_dotenv()
 
 
 class PoemState(BaseModel):

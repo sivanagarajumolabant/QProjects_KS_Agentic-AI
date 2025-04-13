@@ -20,3 +20,4 @@ https://github.com/sourangshupal/Trip-Planner-using-CrewAI
 https://github.com/sourangshupal/agentic_rag_crewai
 https://github.com/sourangshupal/Crewai-Flows-Researcher-Content
 https://github.com/sourangshupal/crewai-lead-score-flow
+https://github.com/sourangshupal/crewai-advanced
