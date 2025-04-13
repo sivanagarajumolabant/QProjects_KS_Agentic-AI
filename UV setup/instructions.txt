@@ -22,6 +22,7 @@ Projects
     uv init: Create a new Python project.
     uv add: Add a dependency to the project.
         - uv add -r requirements.txt -c requirements.txt
+        - uv pip sync requirements.txt
     uv remove: Remove a dependency from the project.
     uv sync: Sync the project's dependencies with the environment.
     uv lock: Create a lockfile for the project's dependencies.
