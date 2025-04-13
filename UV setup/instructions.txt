@@ -1,7 +1,6 @@
 uv
 ==
 
-
 Python versions:
     uv python install: Install Python versions.
     uv python list: View available Python versions.
@@ -121,3 +120,11 @@ To list installed and available Python versions:
 
 
     uv python list --only-installed
+
+
+uv venv  # creates a .venv folder
+uv venv <name>  - test
+    - test\Scripts\activate
+    - deactivate
+
+source .venv/bin/activate
