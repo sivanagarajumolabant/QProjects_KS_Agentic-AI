@@ -1,6 +1,5 @@
 uv
 ==
-
 Python versions:
     uv python install: Install Python versions.
     uv python list: View available Python versions.
