@@ -1,0 +1,65 @@
+Source Statement,Target Statement,Source Statement Number,Target Statement Number,Status
+"CREATE OR REPLACE PROCEDURE update_bonus (
+    p_emp_id IN NUMBER, p_emp_id1 IN NUMBER
+)
+AS","CREATE OR REPLACE PROCEDURE update_bonus (
+    IN p_emp_id INTEGER
+)
+LANGUAGE plpgsql
+AS $$",1,1,Mapped
+v_salary         NUMBER;,v_salary         NUMERIC;,5,5,Mapped
+v_bonus          NUMBER;,v_bonus          NUMERIC;,6,6,Mapped
+v_exists         NUMBER;,v_exists         INTEGER;,7,7,Mapped
+"CURSOR emp_cur IS
+        SELECT emp_id, salary FROM employees WHERE department_id = 10;",rec              RECORD;,8,8,Mapped
+"-- Check if employee exists
+    SELECT COUNT(*) INTO v_exists FROM employees WHERE emp_id = p_emp_id;","-- Check if employee exists
+    SELECT COUNT(*) INTO v_exists FROM employees WHERE emp_id = p_emp_id;",11,11,Mapped
+select * from Siva;,select * from databae;,13,12,Mapped
+IF v_exists = 0 THEN,IF v_exists = 0 THEN,14,13,Mapped
+"RAISE_APPLICATION_ERROR(-20001, 'Employee not found.');",RAISE EXCEPTION 'Employee not found.';,15,14,Mapped
+END IF;,END IF;,16,15,Mapped
+"-- Fetch salary
+    SELECT salary INTO v_salary FROM employees WHERE emp_id = p_emp_id;","-- Fetch salary
+    SELECT salary INTO v_salary FROM employees WHERE emp_id = p_emp_id;",18,17,Mapped
+"-- Calculate bonus
+    IF v_salary < 3000 THEN","-- Calculate bonus
+    IF v_salary < 3000 THEN",20,19,Mapped
+v_bonus := v_salary * 0.1;,v_bonus := v_salary * 0.1;,21,20,Mapped
+ELSIF v_salary < 7000 THEN,ELSIF v_salary < 7000 THEN,22,21,Mapped
+v_bonus := v_salary * 0.07;,v_bonus := v_salary * 0.07;,23,22,Mapped
+ELSE,ELSE,24,23,Mapped
+v_bonus := v_salary * 0.05;,v_bonus := v_salary * 0.05;,25,24,Mapped
+END IF;,END IF;,26,25,Mapped
+select * from himalaya;,select * from sivaji data;,28,27,Mapped
+"-- Update bonus
+    UPDATE employees SET bonus = v_bonus WHERE emp_id = p_emp_id;","-- Update bonus
+    UPDATE employees SET bonus = v_bonus WHERE emp_id = p_emp_id;",30,29,Mapped
+IF siva = 0 THEN,,32,-,Source Only
+"RAISE_APPLICATION_ERROR(-20001, 'Employee not found.');",,33,-,Source Only
+END IF;,,34,-,Source Only
+"-- Log update
+    INSERT INTO bonus_log(emp_id, bonus, log_date)
+    VALUES (p_emp_id, v_bonus, SYSDATE);","-- Log update
+    INSERT INTO bonus_log(emp_id, bonus, log_date)
+    VALUES (p_emp_id, v_bonus, CURRENT_TIMESTAMP);",36,31,Mapped
+"-- Loop example
+    FOR rec IN emp_cur LOOP","-- Loop example
+    FOR rec IN
+        SELECT emp_id, salary FROM employees WHERE department_id = 10
+    LOOP",40,35,Mapped
+DBMS_OUTPUT.PUT_LINE('Emp ID: ' || rec.emp_id || ' Salary: ' || rec.salary);,"RAISE NOTICE 'Emp ID: %, Salary: %', rec.emp_id, rec.salary;",41,38,Mapped
+END LOOP;,END LOOP;,42,39,Mapped
+COMMIT;,COMMIT;,44,41,Mapped
+"EXCEPTION
+    WHEN NO_DATA_FOUND THEN","EXCEPTION
+    WHEN NO_DATA_FOUND THEN",46,43,Mapped
+DBMS_OUTPUT.PUT_LINE('No employee found.');,RAISE NOTICE 'No employee found.';,47,44,Mapped
+WHEN OTHERS THEN,WHEN OTHERS THEN,48,45,Mapped
+ROLLBACK;,ROLLBACK;,49,46,Mapped
+DBMS_OUTPUT.PUT_LINE('Unexpected error: ' || SQLERRM);,"RAISE NOTICE 'Unexpected error: %', SQLERRM;",50,47,Mapped
+END;,END;,51,48,Mapped
+,"WHEN OTHERS THEN
+        ROLLBACK;
+        RAISE NOTICE 'Unexpected error: %', SQLERRM;",-,49,Target Only
+,$$;,-,52,Target Only
