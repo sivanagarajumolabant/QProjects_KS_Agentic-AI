@@ -21,3 +21,4 @@ https://github.com/sourangshupal/agentic_rag_crewai
 https://github.com/sourangshupal/Crewai-Flows-Researcher-Content
 https://github.com/sourangshupal/crewai-lead-score-flow
 https://github.com/sourangshupal/crewai-advanced
+https://krishnaikacademy.notion.site/Resume-ATS-Score-Checker-Project-1d1eba9593d080bc8295cec33c9a424a

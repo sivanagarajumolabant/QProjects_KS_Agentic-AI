@@ -9,5 +9,6 @@ dependencies = [
     "langchain-groq>=0.3.2",
     "mcp-use>=1.2.5",
     "mcp[cli]>=1.6.0",
+    "psycopg2>=2.9.10",
     "python-dotenv>=1.1.0",
 ]
