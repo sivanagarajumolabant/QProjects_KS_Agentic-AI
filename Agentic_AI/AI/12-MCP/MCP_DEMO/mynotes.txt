@@ -1,0 +1,15 @@
+Weather in Hyderabad, India on April 20, 2025 at 15:15 local time:
+- Temperature: 36.1ï¿½C (97.0ï¿½F)
+- Condition: Partly cloudy
+- Humidity: 35%
+- Wind: 3.6 kph from South
+- Visibility: 6.0 km
+- Pressure: 1008.0 mb
+Weather Summary for Hyderabad (April 20, 2025): Hot day at 36.1ï¿½C with partly cloudy skies, low humidity (35%), light southerly breeze, and good visibility.
+Weather in Bangalore, India on April 20, 2025 at 15:15 local time:
+- Temperature: 33.3°C (91.9°F)
+- Condition: Partly cloudy
+- Humidity: 44%
+- Wind: 11.5 kph from East
+- Visibility: 8.0 km
+- Pressure: 1011.0 mb

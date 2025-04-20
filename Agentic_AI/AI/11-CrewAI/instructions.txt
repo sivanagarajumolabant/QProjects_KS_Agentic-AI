@@ -22,3 +22,6 @@ https://github.com/sourangshupal/Crewai-Flows-Researcher-Content
 https://github.com/sourangshupal/crewai-lead-score-flow
 https://github.com/sourangshupal/crewai-advanced
 https://krishnaikacademy.notion.site/Resume-ATS-Score-Checker-Project-1d1eba9593d080bc8295cec33c9a424a
+https://gist.github.com/sourangshupal/be25d43411ea6c5cbf10e53df433560a
+https://github.com/sourangshupal/Build-Custom-MCP-Servers/blob/main/main.py
+https://colab.research.google.com/drive/1fx_JOzNB95mf91BMVQgQdSuShHD6L4Bz?usp=sharing
