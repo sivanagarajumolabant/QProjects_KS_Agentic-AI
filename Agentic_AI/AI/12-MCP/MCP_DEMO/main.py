@@ -11,7 +11,7 @@ weather_api_key = os.getenv("WEATHER_API_KEY")
 # Create an MCP server
 mcp = FastMCP("Weather Search")
 
-NOTES_FILE = "mynotes.txt"
+NOTES_FILE = os.path.join(os.path.dirname(__file__), "mynotes.txt")
 
 
 @mcp.tool()
