@@ -1,0 +1,10 @@
+Bangalore Weather - April 21, 2025, 2:35 PM:
+- Temperature: 33.3°C (91.9°F)
+- Condition: Partly cloudy
+- Humidity: 30%
+- Wind: 20.9 km/h from the East
+- Feels like: 31.2°C (88.1°F)
+- Visibility: 8 km
+- UV Index: 7.1 (High)
+Calculation - April 21, 2025:
+10 + 5 = 15

@@ -1,0 +1,2 @@
+uv run mcp dev server/weather.py  -- mcp inspector
+uv run mcp install server/weather.py  -- mcp to make it into claude
