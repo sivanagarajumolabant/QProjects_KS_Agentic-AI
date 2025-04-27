@@ -25,3 +25,5 @@ https://krishnaikacademy.notion.site/Resume-ATS-Score-Checker-Project-1d1eba9593
 https://gist.github.com/sourangshupal/be25d43411ea6c5cbf10e53df433560a
 https://github.com/sourangshupal/Build-Custom-MCP-Servers/blob/main/main.py
 https://colab.research.google.com/drive/1fx_JOzNB95mf91BMVQgQdSuShHD6L4Bz?usp=sharing
+https://github.com/sourangshupal/mcp-rag
+https://docs.langflow.org/get-started-installation
