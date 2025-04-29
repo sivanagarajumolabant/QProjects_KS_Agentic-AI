@@ -1,0 +1,19 @@
+---
+config:
+  flowchart:
+    curve: linear
+---
+graph TD;
+	Start([<p>Start</p>]):::first
+	coder(coder)
+	reviewer(reviewer)
+	test_generator(test_generator)
+	End([<p>End</p>]):::last
+	Start --> coder;
+	coder --> reviewer;
+	test_generator --> End;
+	reviewer -. &nbsp;False&nbsp; .-> coder;
+	reviewer -. &nbsp;True&nbsp; .-> test_generator;
+	classDef default fill:#f2f0ff,line-height:1.2
+	classDef first fill-opacity:0
+	classDef last fill:#bfb6fc
