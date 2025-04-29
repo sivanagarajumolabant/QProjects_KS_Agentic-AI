@@ -3,13 +3,24 @@ FROM python:3.12-slim
 ENV PYTHONUNBUFFERED 1
 ENV PYTHONDONTWRITEBYTECODE 1
 
-RUN apt-get update && apt-get install -y build-essential python3-dev && rm -rf /var/lib/apt/lists/*
-
+RUN apt-get update && apt-get install -y build-essential python3-dev curl && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 COPY . /app
 
 
-RUN pip install -r requirements.txt
+RUN pip install uv && \
+    # Generate requirements.txt from pyproject.toml using uv
+    uv pip compile pyproject.toml -o requirements.txt && \
+    # Install dependencies using uv
+    uv pip install --system -r requirements.txt
 
-CMD ["streamlit", "run", "streamlit_app.py"]
+
+# Explicitly document that this container uses port 8000
+EXPOSE 8000
+
+# Make sure Streamlit binds to 0.0.0.0 so it's accessible from outside the container
+CMD ["streamlit", "run", "streamlit_app.py", "--server.port=8000", "--server.address=0.0.0.0"]
+
+# docker build -f Dockerfile_QM_Test -t aiassessment_version1 .
+# docker run -it -p 8000:8000 aiassessment_version1

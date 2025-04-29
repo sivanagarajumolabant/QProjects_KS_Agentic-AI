@@ -1,13 +1,13 @@
 trigger:
-- Test
+- main
 
 resources:
 - repo: self
 
 variables:
-  dockerRegistryServiceConnection: 'QM_Chatbot_Test'
-  imageRepository: 'qmigrator_ai'
-  containerRegistry: 'qmigtest.azurecr.io'
+  dockerRegistryServiceConnection: 'qmigaiassessment'
+  imageRepository: 'qmigaiassessment'
+  containerRegistry: 'qmigai.azurecr.io'
   dockerfilePath: '**/Dockerfile_QM_Test'
   tag: '$(Build.BuildId)'
   vmImageName: 'ubuntu-latest'
@@ -30,32 +30,7 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
-        arguments: '--build-arg DB_USER=$(DB_USER) --build-arg DB_PASSWORD=$(DB_PASSWORD) --build-arg DB_SCHEMA=$(DB_SCHEMA) --build-arg DB_HOST=$(DB_HOST) --build-arg DB_NAME=$(DB_NAME) --build-arg DB_PORT=$(DB_PORT) --build-arg BLOB_CONTAINER_NAME=$(BLOB_CONTAINER_NAME) --build-arg AZURE_OAI_KEY=$(AZURE_OAI_KEY) --build-arg AZURE_OAI_MODEL=$(AZURE_OAI_MODEL) --build-arg AZURE_OPENAI_ENDPOINT=$(AZURE_OPENAI_ENDPOINT) --build-arg AZURE_OPENAI_VERSION=$(AZURE_OPENAI_VERSION) --build-arg AZURE_CONNECTION_STRING=$(AZURE_CONNECTION_STRING) --build-arg UID=$(UID) --build-arg GID=$(GID) --build-arg CLIENT_ID=$(CLIENT_ID) --build-arg QM_URL=$(QM_URL)'
-
-    - task: AquaSecurityOfficial.trivy-official.custom-build-release-task.trivy@1
-      displayName: Image Scan
-      # enabled: False
-      inputs:
-        image: qmigtest.azurecr.io/$(imageRepository):$(tag)
-        # severities: CRITICAL,HIGH,MEDIUM,LOW
-        # loginDockerConfig: true
-        ignoreUnfixed: true
-        options: '--scanners vuln'
-        exitCode: 0
-    # - task: CmdLine@2
-    #   inputs:
-    #     script: |
-    #       mkdir $(Build.ArtifactStagingDirectory)/reports
-    #       cp /home/vsts/work/_temp/trivy-results* $(Build.ArtifactStagingDirectory)/reports/
-    #   condition: succeededOrFailed()
-
-    # - task: PublishPipelineArtifact@1
-    #   inputs:
-    #     targetPath: '$(Build.ArtifactStagingDirectory)/reports'
-    #     artifact: 'reports'
-    #     publishLocation: 'pipeline'
-    #   condition: succeededOrFailed()
-
+      
     
     - task: Docker@2
       displayName: push an image to container registry

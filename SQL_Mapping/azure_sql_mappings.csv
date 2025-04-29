@@ -1,0 +1,91 @@
+Source Statement,Target Statement,Source Statement Number,Target Statement Number,Status
+"CREATE OR REPLACE PROCEDURE ""AHC"".""GETCOPD"" (iv_AHCNo IN COPDAPIRESPONSEDATA.ADMISSIONNUMBER%TYPE,
+                                                        oCursor_copd OUT SYS_REFCURSOR)","CREATE OR REPLACE PROCEDURE ahc.GETCOPD (iv_AHCNo IN ahc.COPDAPIRESPONSEDATA.ADMISSIONNUMBER%TYPE, oCursor_copd INOUT refcursor)",1,1,Mapped
+"/******************************************************************************
+    Procedure:  GetCOPD
+    Parameters: @Ahcno,@UHID Id INPUT
+    Purpose:    This procedure is to gets  APIResponse details from COPDAPIResponse.
+    Created By: Aman Saxena on 03/07/2021
+  ******************************************************************************/","/*
+ *****************************************************************************
+ Procedure: GetCOPD
+ Parameters: @Ahcno,@UHID Id INPUT
+ Purpose: This procedure is to gets APIResponse details from COPDAPIResponse.
+ Created By: Aman Saxena on 03072021
+ *****************************************************************************
+ */",3,2,Mapped
+AS,LANGUAGE plpgsql,10,9,Mapped
+,SECURITY DEFINER,-,10,Target Only
+,AS $BODY$,-,11,Target Only
+BEGIN,BEGIN,11,12,Mapped
+,SET search_path TO AHC;,-,13,Target Only
+OPEN oCursor_copd FOR,OPEN oCursor_copd FOR,12,14,Mapped
+"SELECT
+      UHID,
+      ADMISSIONNUMBER,
+      PatientName,
+      MobileNo,
+      Location,
+      RepiratoryCondition,
+      AgeStatus,
+      GenderStatus,
+      Tobaccoproducts,
+      HertDisease,
+      Progressivebreathlessness,
+      Sputumproduction,
+      DrugsListedBelow,
+      RespiratoryRate,
+      BaselineRecently,
+      OxygenSaturation,
+      ChestAuscultation,
+      LabInvestigation,
+      DiagnosticsorImaging,
+      Referral,
+      TreatmentGoals,
+      EDUCATEOn,
+      CREATEDDATE,
+      UPDATEDDATE,
+      GENDER,
+      RISK,
+      AGE,
+      Nextsteps,
+      risk_text as RiskText,
+      Testsfollowup
+      FROM  AHC.COPDAPIRESPONSEDATA
+      WHERE ADMISSIONNUMBER = iv_AHCNo;","SELECT
+            UHID,
+            ADMISSIONNUMBER,
+            PatientName,
+            MobileNo,
+            Location,
+            RepiratoryCondition,
+            AgeStatus,
+            GenderStatus,
+            Tobaccoproducts,
+            HertDisease,
+            Progressivebreathlessness,
+            Sputumproduction,
+            DrugsListedBelow,
+            RespiratoryRate,
+            BaselineRecently,
+            OxygenSaturation,
+            ChestAuscultation,
+            LabInvestigation,
+            DiagnosticsorImaging,
+            Referral,
+            TreatmentGoals,
+            EDUCATEOn,
+            CREATEDDATE,
+            UPDATEDDATE,
+            GENDER,
+            RISK,
+            AGE,
+            Nextsteps,
+            risk_text AS RiskText,
+            Testsfollowup
+        FROM
+            ahc.COPDAPIRESPONSEDATA
+        WHERE
+            ADMISSIONNUMBER = iv_AHCNo;",13,15,Mapped
+END GetCOPD;,END;,42,45,Mapped
+,$BODY$;,-,46,Target Only
