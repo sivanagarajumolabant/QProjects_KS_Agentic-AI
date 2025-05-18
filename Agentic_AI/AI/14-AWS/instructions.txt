@@ -1,0 +1,6 @@
+https://gist.github.com/sourangshupal/813ef39e7d066fe8ba8cf8944ea492d5
+
+
+https://aws.amazon.com/blogs/machine-learning/automating-regulatory-compliance-a-multi-agent-solution-using-amazon-bedrock-and-crewai/
+
+https://github.com/sourangshupal/aws-rag-deploy
