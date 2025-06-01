@@ -1,0 +1,7 @@
+autogen-agentchat
+dotenv
+pydantic
+asyncio
+autogen-ext[openai]
+autogen-ext[ollama]
+autogen_core
