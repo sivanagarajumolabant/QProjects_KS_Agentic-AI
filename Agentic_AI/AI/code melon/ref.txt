@@ -1,0 +1,15 @@
+
+The Local AI Package:
+
+https://github.com/coleam00/local-ai-packaged
+
+The agents built in this masterclass:
+
+https://github.com/coleam00/ottomator-agents/tree/main/python-local-ai-agent
+
+Ollama FAQs: https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbnA1clZyeVBXM2N4aE9NX3hNQXpCWmd6ckdhUXxBQ3Jtc0tsclA4eGpBaDFhN3FkRzJQdERWNzFTRmFEVkhOMlFET0FDM1JFSy1xLU5McDFVRlQ4cnM0NTRLa01fcUI0RXNlLUdhUzhyZUotNVpSMXhHMmJXYUpiMDRfdUZ4ZVpyMmVFMklEYmM3dkhNb2xxUlozaw&q=https%3A%2F%2Fgithub.com%2Follama%2Follama%2Fblob%2Fmain%2Fdocs%2Ffaq.md&v=mNcXue7X8H0
+Ollama OpenAI API compatibility: https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbmRpR3VLc1NEb09qS1ZPUEttNU5uMWJSX2o4UXxBQ3Jtc0trYVRGZEFxR0xsRVNrYkJyZlRCRVVYWEhtVjdWdWg1SGdQZWlVMkNxWDliYzNZa2E1bXdOaU1uaHlwT2I2NmVBQkVwRW5oQ2EyNU0xckpybU9LeFI1RjNlMmkxbUVJMkhvaTFuSXVpd3dxekxUVjdtMA&q=https%3A%2F%2Follama.com%2Fblog%2Fopenai-compatibility&v=mNcXue7X8H0
+
+
+My YouTube video for RAG with Local AI:
+https://www.youtube.com/watch?v=T2QWhXpnT5I
