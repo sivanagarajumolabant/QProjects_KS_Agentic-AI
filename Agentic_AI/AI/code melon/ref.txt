@@ -3,6 +3,8 @@ The Local AI Package:
 
 https://github.com/coleam00/local-ai-packaged
 
+Ollama FAQs : https://github.com/ollama/ollama/blob/main/docs/faq.md
+
 The agents built in this masterclass:
 
 https://github.com/coleam00/ottomator-agents/tree/main/python-local-ai-agent
