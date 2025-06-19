@@ -117,8 +117,8 @@ def main():
             "name": "Ollama through OpenAI Compatibility",
             "base_url": os.getenv("LLM_BASE_URL", "http://localhost:11434/v1"),
             "api_key": os.getenv("LLM_API_KEY", "ollama"),
-            "model": os.getenv("LLM_CHOICE", "qwen3:14b"),
-            "enabled": os.getenv("LLM_BASE_URL") is not None
+            "model": os.getenv("LLM_CHOICE", "qwen3:4b"),
+            "enabled": os.getenv("LLM_BASE_URL", "http://localhost:11434/v1") is not None
         }
     ]
     
