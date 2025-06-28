@@ -1,0 +1,31 @@
+OrderID,CustomerID,ProductName,Category,Region,OrderDate,SalesAmount,Quantity,Profit
+1001,CUST001,Laptop Pro 15,Electronics,North,2023-01-15,1299.99,1,389.99
+1002,CUST002,Office Chair Deluxe,Furniture,South,2023-01-16,299.99,2,89.99
+1003,CUST003,Wireless Mouse,Electronics,East,2023-01-17,49.99,3,19.99
+1004,CUST004,Desk Organizer,Office Supplies,West,2023-01-18,24.99,1,9.99
+1005,CUST005,Monitor 27 inch,Electronics,North,2023-01-19,399.99,1,119.99
+1006,CUST006,Conference Table,Furniture,South,2023-01-20,899.99,1,269.99
+1007,CUST007,Printer Paper,Office Supplies,East,2023-01-21,19.99,5,4.99
+1008,CUST008,Gaming Keyboard,Electronics,West,2023-01-22,129.99,1,39.99
+1009,CUST009,Executive Desk,Furniture,North,2023-01-23,1199.99,1,359.99
+1010,CUST010,Stapler Set,Office Supplies,South,2023-01-24,14.99,2,4.99
+1011,CUST011,Tablet 10 inch,Electronics,East,2023-02-01,299.99,1,89.99
+1012,CUST012,Bookshelf,Furniture,West,2023-02-02,199.99,1,59.99
+1013,CUST013,Pen Set,Office Supplies,North,2023-02-03,29.99,3,9.99
+1014,CUST014,Smartphone,Electronics,South,2023-02-04,699.99,1,209.99
+1015,CUST015,Filing Cabinet,Furniture,East,2023-02-05,149.99,1,44.99
+1016,CUST016,Calculator,Office Supplies,West,2023-02-06,39.99,2,11.99
+1017,CUST017,Webcam HD,Electronics,North,2023-02-07,79.99,1,23.99
+1018,CUST018,Lounge Chair,Furniture,South,2023-02-08,499.99,1,149.99
+1019,CUST019,Notebook Pack,Office Supplies,East,2023-02-09,12.99,4,3.99
+1020,CUST020,Headphones,Electronics,West,2023-02-10,199.99,1,59.99
+1021,CUST021,Standing Desk,Furniture,North,2023-03-01,799.99,1,239.99
+1022,CUST022,Whiteboard,Office Supplies,South,2023-03-02,89.99,1,26.99
+1023,CUST023,Router WiFi,Electronics,East,2023-03-03,149.99,1,44.99
+1024,CUST024,Ergonomic Chair,Furniture,West,2023-03-04,399.99,1,119.99
+1025,CUST025,Folder Set,Office Supplies,North,2023-03-05,19.99,2,5.99
+1026,CUST026,Smart Watch,Electronics,South,2023-03-06,249.99,1,74.99
+1027,CUST027,Coffee Table,Furniture,East,2023-03-07,299.99,1,89.99
+1028,CUST028,Highlighter Pack,Office Supplies,West,2023-03-08,9.99,3,2.99
+1029,CUST029,External Drive,Electronics,North,2023-03-09,99.99,1,29.99
+1030,CUST030,Sofa 3-Seater,Furniture,South,2023-03-10,1299.99,1,389.99

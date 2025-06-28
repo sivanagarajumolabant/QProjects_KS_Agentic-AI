@@ -1,0 +1,471 @@
+{
+  "conversion_info": {
+    "step": "Step 3 - Visual Creation",
+    "created_date": "2025-06-23T16:19:10.139588",
+    "total_visuals": 4,
+    "dashboard_pages": 2
+  },
+  "visuals": [
+    {
+      "name": "Sales by Region",
+      "type": "clusteredBarChart",
+      "title": "Sales by Region",
+      "data_fields": {
+        "category": [
+          "Region"
+        ],
+        "values": [
+          "Total Sales"
+        ]
+      },
+      "formatting": {
+        "data_colors": {
+          "East": "#1f77b4",
+          "North": "#ff7f0e",
+          "South": "#2ca02c",
+          "West": "#d62728"
+        },
+        "show_data_labels": true,
+        "legend_position": "Right",
+        "x_axis_title": "Sales Amount",
+        "y_axis_title": "Region"
+      },
+      "interactions": {
+        "cross_filter": true,
+        "cross_highlight": true
+      },
+      "sorting": {
+        "field": "Total Sales",
+        "direction": "Descending"
+      }
+    },
+    {
+      "name": "Sales Trend",
+      "type": "lineChart",
+      "title": "Sales Trend",
+      "data_fields": {
+        "axis": [
+          "OrderDate"
+        ],
+        "values": [
+          "Total Sales"
+        ]
+      },
+      "formatting": {
+        "line_color": "#1f77b4",
+        "show_data_labels": false,
+        "legend_position": "None",
+        "x_axis_title": "Order Date",
+        "y_axis_title": "Sales Amount"
+      },
+      "interactions": {
+        "cross_filter": true,
+        "cross_highlight": true
+      },
+      "date_hierarchy": {
+        "level": "Month",
+        "auto_date_hierarchy": true
+      }
+    },
+    {
+      "name": "Category Performance",
+      "type": "pieChart",
+      "title": "Category Performance",
+      "data_fields": {
+        "legend": [
+          "Category"
+        ],
+        "values": [
+          "Total Sales"
+        ]
+      },
+      "formatting": {
+        "data_colors": {
+          "Electronics": "#1f77b4",
+          "Furniture": "#ff7f0e",
+          "Office Supplies": "#2ca02c"
+        },
+        "show_data_labels": true,
+        "legend_position": "Right",
+        "detail_labels": "Category"
+      },
+      "interactions": {
+        "cross_filter": true,
+        "cross_highlight": true
+      }
+    },
+    {
+      "name": "Profit Analysis",
+      "type": "scatterChart",
+      "title": "Profit Analysis",
+      "data_fields": {
+        "x_axis": [
+          "Total Sales"
+        ],
+        "y_axis": [
+          "Total Profit"
+        ],
+        "legend": [
+          "Category"
+        ],
+        "size": [
+          "Total Quantity"
+        ]
+      },
+      "formatting": {
+        "data_colors": {
+          "Electronics": "#1f77b4",
+          "Furniture": "#ff7f0e",
+          "Office Supplies": "#2ca02c"
+        },
+        "show_data_labels": false,
+        "legend_position": "Right",
+        "x_axis_title": "Sales Amount",
+        "y_axis_title": "Profit"
+      },
+      "interactions": {
+        "cross_filter": true,
+        "cross_highlight": true
+      }
+    }
+  ],
+  "dashboard_layout": {
+    "name": "Sales Dashboard",
+    "page_size": {
+      "width": 1280,
+      "height": 720,
+      "type": "16:9"
+    },
+    "layout": {
+      "type": "grid",
+      "sections": [
+        {
+          "name": "top_section",
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 1280,
+            "height": 360
+          },
+          "visual": "Sales by Region"
+        },
+        {
+          "name": "bottom_left",
+          "position": {
+            "x": 0,
+            "y": 360,
+            "width": 640,
+            "height": 360
+          },
+          "visual": "Sales Trend"
+        },
+        {
+          "name": "bottom_right",
+          "position": {
+            "x": 640,
+            "y": 360,
+            "width": 640,
+            "height": 360
+          },
+          "visual": "Category Performance"
+        }
+      ]
+    },
+    "additional_pages": [
+      {
+        "name": "Detailed Analysis",
+        "visuals": [
+          "Profit Analysis"
+        ]
+      }
+    ],
+    "filters": {
+      "page_level": [
+        "Region",
+        "Category"
+      ],
+      "report_level": [
+        "Year"
+      ]
+    }
+  },
+  "filters": [
+    {
+      "name": "Region Filter",
+      "type": "slicer",
+      "field": "Region",
+      "style": "dropdown",
+      "default_selection": "All",
+      "position": {
+        "x": 20,
+        "y": 20,
+        "width": 200,
+        "height": 100
+      }
+    },
+    {
+      "name": "Category Filter",
+      "type": "slicer",
+      "field": "Category",
+      "style": "list",
+      "multi_select": true,
+      "position": {
+        "x": 240,
+        "y": 20,
+        "width": 200,
+        "height": 100
+      }
+    },
+    {
+      "name": "Date Range",
+      "type": "date_slicer",
+      "field": "OrderDate",
+      "style": "between",
+      "position": {
+        "x": 460,
+        "y": 20,
+        "width": 300,
+        "height": 100
+      }
+    }
+  ],
+  "report_structure": {
+    "version": "1.0",
+    "report_info": {
+      "name": "Sales Report - Converted from Tableau",
+      "description": "Migrated from Tableau sample_sales_report.twb",
+      "created_date": "2025-06-23T16:19:10.139588",
+      "author": "Tableau to Power BI Migration Engine"
+    },
+    "dataset": {
+      "name": "Sales Data",
+      "connection_type": "CSV",
+      "refresh_schedule": "Daily"
+    },
+    "pages": [
+      {
+        "name": "Sales Dashboard",
+        "display_name": "Sales Dashboard",
+        "width": 1280,
+        "height": 720,
+        "visuals": [
+          {
+            "name": "Sales by Region",
+            "type": "clusteredBarChart",
+            "title": "Sales by Region",
+            "data_fields": {
+              "category": [
+                "Region"
+              ],
+              "values": [
+                "Total Sales"
+              ]
+            },
+            "formatting": {
+              "data_colors": {
+                "East": "#1f77b4",
+                "North": "#ff7f0e",
+                "South": "#2ca02c",
+                "West": "#d62728"
+              },
+              "show_data_labels": true,
+              "legend_position": "Right",
+              "x_axis_title": "Sales Amount",
+              "y_axis_title": "Region"
+            },
+            "interactions": {
+              "cross_filter": true,
+              "cross_highlight": true
+            },
+            "sorting": {
+              "field": "Total Sales",
+              "direction": "Descending"
+            }
+          },
+          {
+            "name": "Sales Trend",
+            "type": "lineChart",
+            "title": "Sales Trend",
+            "data_fields": {
+              "axis": [
+                "OrderDate"
+              ],
+              "values": [
+                "Total Sales"
+              ]
+            },
+            "formatting": {
+              "line_color": "#1f77b4",
+              "show_data_labels": false,
+              "legend_position": "None",
+              "x_axis_title": "Order Date",
+              "y_axis_title": "Sales Amount"
+            },
+            "interactions": {
+              "cross_filter": true,
+              "cross_highlight": true
+            },
+            "date_hierarchy": {
+              "level": "Month",
+              "auto_date_hierarchy": true
+            }
+          },
+          {
+            "name": "Category Performance",
+            "type": "pieChart",
+            "title": "Category Performance",
+            "data_fields": {
+              "legend": [
+                "Category"
+              ],
+              "values": [
+                "Total Sales"
+              ]
+            },
+            "formatting": {
+              "data_colors": {
+                "Electronics": "#1f77b4",
+                "Furniture": "#ff7f0e",
+                "Office Supplies": "#2ca02c"
+              },
+              "show_data_labels": true,
+              "legend_position": "Right",
+              "detail_labels": "Category"
+            },
+            "interactions": {
+              "cross_filter": true,
+              "cross_highlight": true
+            }
+          }
+        ],
+        "filters": [
+          {
+            "name": "Region Filter",
+            "type": "slicer",
+            "field": "Region",
+            "style": "dropdown",
+            "default_selection": "All",
+            "position": {
+              "x": 20,
+              "y": 20,
+              "width": 200,
+              "height": 100
+            }
+          },
+          {
+            "name": "Category Filter",
+            "type": "slicer",
+            "field": "Category",
+            "style": "list",
+            "multi_select": true,
+            "position": {
+              "x": 240,
+              "y": 20,
+              "width": 200,
+              "height": 100
+            }
+          },
+          {
+            "name": "Date Range",
+            "type": "date_slicer",
+            "field": "OrderDate",
+            "style": "between",
+            "position": {
+              "x": 460,
+              "y": 20,
+              "width": 300,
+              "height": 100
+            }
+          }
+        ]
+      },
+      {
+        "name": "Detailed Analysis",
+        "display_name": "Detailed Analysis",
+        "width": 1280,
+        "height": 720,
+        "visuals": [
+          {
+            "name": "Profit Analysis",
+            "type": "scatterChart",
+            "title": "Profit Analysis",
+            "data_fields": {
+              "x_axis": [
+                "Total Sales"
+              ],
+              "y_axis": [
+                "Total Profit"
+              ],
+              "legend": [
+                "Category"
+              ],
+              "size": [
+                "Total Quantity"
+              ]
+            },
+            "formatting": {
+              "data_colors": {
+                "Electronics": "#1f77b4",
+                "Furniture": "#ff7f0e",
+                "Office Supplies": "#2ca02c"
+              },
+              "show_data_labels": false,
+              "legend_position": "Right",
+              "x_axis_title": "Sales Amount",
+              "y_axis_title": "Profit"
+            },
+            "interactions": {
+              "cross_filter": true,
+              "cross_highlight": true
+            }
+          }
+        ],
+        "filters": [
+          {
+            "name": "Region Filter",
+            "type": "slicer",
+            "field": "Region",
+            "style": "dropdown",
+            "default_selection": "All",
+            "position": {
+              "x": 20,
+              "y": 20,
+              "width": 200,
+              "height": 100
+            }
+          },
+          {
+            "name": "Category Filter",
+            "type": "slicer",
+            "field": "Category",
+            "style": "list",
+            "multi_select": true,
+            "position": {
+              "x": 240,
+              "y": 20,
+              "width": 200,
+              "height": 100
+            }
+          },
+          {
+            "name": "Date Range",
+            "type": "date_slicer",
+            "field": "OrderDate",
+            "style": "between",
+            "position": {
+              "x": 460,
+              "y": 20,
+              "width": 300,
+              "height": 100
+            }
+          }
+        ]
+      }
+    ],
+    "interactions": {
+      "cross_filter_enabled": true,
+      "cross_highlight_enabled": true,
+      "drill_through_enabled": true
+    }
+  }
+}

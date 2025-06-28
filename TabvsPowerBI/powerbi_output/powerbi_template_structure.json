@@ -1,0 +1,551 @@
+{
+  "version": "1.0",
+  "dataModel": {
+    "name": "Sales",
+    "columns": [
+      {
+        "name": "OrderID",
+        "dataType": "Int64",
+        "sourceColumn": "OrderID",
+        "summarizeBy": "Count"
+      },
+      {
+        "name": "CustomerID",
+        "dataType": "String",
+        "sourceColumn": "CustomerID",
+        "summarizeBy": "Count"
+      },
+      {
+        "name": "ProductName",
+        "dataType": "String",
+        "sourceColumn": "ProductName",
+        "summarizeBy": "Count"
+      },
+      {
+        "name": "Category",
+        "dataType": "String",
+        "sourceColumn": "Category",
+        "summarizeBy": "Count"
+      },
+      {
+        "name": "Region",
+        "dataType": "String",
+        "sourceColumn": "Region",
+        "summarizeBy": "Count"
+      },
+      {
+        "name": "OrderDate",
+        "dataType": "DateTime",
+        "sourceColumn": "OrderDate",
+        "summarizeBy": "None"
+      },
+      {
+        "name": "SalesAmount",
+        "dataType": "Double",
+        "sourceColumn": "SalesAmount",
+        "summarizeBy": "Sum"
+      },
+      {
+        "name": "Quantity",
+        "dataType": "Int64",
+        "sourceColumn": "Quantity",
+        "summarizeBy": "Sum"
+      },
+      {
+        "name": "Profit",
+        "dataType": "Double",
+        "sourceColumn": "Profit",
+        "summarizeBy": "Sum"
+      },
+      {
+        "name": "Sales Category",
+        "dataType": "String",
+        "expression": "IF(SUM(Sales[SalesAmount]) > 10000, \"High Sales\", IF(SUM(Sales[SalesAmount]) > 5000, \"Medium Sales\", \"Low Sales\"))",
+        "isCalculated": true
+      },
+      {
+        "name": "Year",
+        "dataType": "Int64",
+        "expression": "YEAR(Sales[OrderDate])",
+        "isCalculated": true
+      },
+      {
+        "name": "Quarter",
+        "dataType": "String",
+        "expression": "\"Q\" & FORMAT(Sales[OrderDate], \"Q\")",
+        "isCalculated": true
+      }
+    ],
+    "measures": [
+      {
+        "name": "Profit Margin",
+        "expression": "DIVIDE(SUM(Sales[Profit]), SUM(Sales[SalesAmount]), 0)",
+        "formatString": "0.00%;-0.00%;0.00%",
+        "description": "Profit margin percentage calculation"
+      },
+      {
+        "name": "Total Sales",
+        "expression": "SUM(Sales[SalesAmount])",
+        "formatString": "\"$\"#,0.00;(\"$\"#,0.00)",
+        "description": "Total sales amount"
+      },
+      {
+        "name": "Total Profit",
+        "expression": "SUM(Sales[Profit])",
+        "formatString": "\"$\"#,0.00;(\"$\"#,0.00)",
+        "description": "Total profit amount"
+      },
+      {
+        "name": "Total Quantity",
+        "expression": "SUM(Sales[Quantity])",
+        "formatString": "#,0",
+        "description": "Total quantity sold"
+      },
+      {
+        "name": "Average Order Value",
+        "expression": "DIVIDE(SUM(Sales[SalesAmount]), DISTINCTCOUNT(Sales[OrderID]), 0)",
+        "formatString": "\"$\"#,0.00;(\"$\"#,0.00)",
+        "description": "Average value per order"
+      },
+      {
+        "name": "Order Count",
+        "expression": "DISTINCTCOUNT(Sales[OrderID])",
+        "formatString": "#,0",
+        "description": "Total number of orders"
+      },
+      {
+        "name": "Customer Count",
+        "expression": "DISTINCTCOUNT(Sales[CustomerID])",
+        "formatString": "#,0",
+        "description": "Total number of customers"
+      }
+    ],
+    "hierarchies": [
+      {
+        "name": "Date Hierarchy",
+        "levels": [
+          {
+            "name": "Year",
+            "ordinal": 0,
+            "column": "Year"
+          },
+          {
+            "name": "Quarter",
+            "ordinal": 1,
+            "column": "Quarter"
+          },
+          {
+            "name": "Month",
+            "ordinal": 2,
+            "column": "OrderDate"
+          }
+        ]
+      }
+    ]
+  },
+  "report": {
+    "version": "5.0",
+    "config": {
+      "version": "5.0",
+      "themeCollection": {
+        "baseTheme": {
+          "name": "CY24SU06"
+        }
+      }
+    },
+    "layoutOptimization": 0,
+    "sections": [
+      {
+        "name": "Sales Dashboard",
+        "displayName": "Sales Dashboard",
+        "visualContainers": [
+          {
+            "x": 0,
+            "y": 100,
+            "width": 640,
+            "height": 280,
+            "config": {
+              "name": "3ecc2782-d3a3-462d-b8f9-3b2399dc0778",
+              "layouts": [
+                {
+                  "id": 0,
+                  "position": {
+                    "x": 0,
+                    "y": 100,
+                    "width": 640,
+                    "height": 280
+                  }
+                }
+              ],
+              "singleVisual": {
+                "visualType": "clusteredBarChart",
+                "projections": {
+                  "Category": [
+                    {
+                      "queryRef": "Sales.Region"
+                    }
+                  ],
+                  "Y": [
+                    {
+                      "queryRef": "Sales.Total Sales"
+                    }
+                  ]
+                },
+                "prototypeQuery": {
+                  "Version": 2,
+                  "From": [
+                    {
+                      "Name": "s",
+                      "Entity": "Sales",
+                      "Type": 0
+                    }
+                  ],
+                  "Select": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "s"
+                          }
+                        },
+                        "Property": "Region"
+                      },
+                      "Name": "Sales.Region"
+                    },
+                    {
+                      "Aggregation": {
+                        "Expression": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "s"
+                              }
+                            },
+                            "Property": "SalesAmount"
+                          }
+                        },
+                        "Function": 0
+                      },
+                      "Name": "Sum(Sales.SalesAmount)"
+                    }
+                  ],
+                  "OrderBy": []
+                },
+                "objects": {
+                  "dataPoint": {
+                    "fill": {
+                      "solid": {
+                        "color": "#1f77b4"
+                      }
+                    }
+                  },
+                  "title": [
+                    {
+                      "properties": {
+                        "text": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Sales by Region'"
+                            }
+                          }
+                        },
+                        "show": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "true"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "x": 0,
+            "y": 400,
+            "width": 640,
+            "height": 280,
+            "config": {
+              "name": "89f7966c-c257-4eb2-9991-efef696f315b",
+              "layouts": [
+                {
+                  "id": 0,
+                  "position": {
+                    "x": 0,
+                    "y": 400,
+                    "width": 640,
+                    "height": 280
+                  }
+                }
+              ],
+              "singleVisual": {
+                "visualType": "lineChart",
+                "projections": {
+                  "Category": [
+                    {
+                      "queryRef": "Sales.OrderDate"
+                    }
+                  ],
+                  "Y": [
+                    {
+                      "queryRef": "Sales.Total Sales"
+                    }
+                  ]
+                },
+                "prototypeQuery": {
+                  "Version": 2,
+                  "From": [
+                    {
+                      "Name": "s",
+                      "Entity": "Sales",
+                      "Type": 0
+                    }
+                  ],
+                  "Select": [],
+                  "OrderBy": []
+                },
+                "objects": {
+                  "title": [
+                    {
+                      "properties": {
+                        "text": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Sales Trend'"
+                            }
+                          }
+                        },
+                        "show": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "true"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "x": 640,
+            "y": 400,
+            "width": 640,
+            "height": 280,
+            "config": {
+              "name": "5cb035ba-3d0a-4f94-8e43-0f0e49cb11c9",
+              "layouts": [
+                {
+                  "id": 0,
+                  "position": {
+                    "x": 640,
+                    "y": 400,
+                    "width": 640,
+                    "height": 280
+                  }
+                }
+              ],
+              "singleVisual": {
+                "visualType": "pieChart",
+                "projections": {
+                  "Category": [
+                    {
+                      "queryRef": "Sales.Category"
+                    }
+                  ],
+                  "Y": [
+                    {
+                      "queryRef": "Sales.Total Sales"
+                    }
+                  ]
+                },
+                "prototypeQuery": {
+                  "Version": 2,
+                  "From": [
+                    {
+                      "Name": "s",
+                      "Entity": "Sales",
+                      "Type": 0
+                    }
+                  ],
+                  "Select": [],
+                  "OrderBy": []
+                },
+                "objects": {
+                  "dataPoint": {
+                    "fill": {
+                      "solid": {
+                        "color": "#1f77b4"
+                      }
+                    }
+                  },
+                  "title": [
+                    {
+                      "properties": {
+                        "text": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Category Performance'"
+                            }
+                          }
+                        },
+                        "show": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "true"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        ],
+        "filters": [
+          {
+            "name": "Region Filter",
+            "field": "Region",
+            "type": "slicer",
+            "values": []
+          },
+          {
+            "name": "Category Filter",
+            "field": "Category",
+            "type": "slicer",
+            "values": []
+          },
+          {
+            "name": "Date Range",
+            "field": "OrderDate",
+            "type": "date_slicer",
+            "values": []
+          }
+        ],
+        "width": 1280,
+        "height": 720
+      },
+      {
+        "name": "Detailed Analysis",
+        "displayName": "Detailed Analysis",
+        "visualContainers": [
+          {
+            "x": 0,
+            "y": 100,
+            "width": 640,
+            "height": 280,
+            "config": {
+              "name": "861bbac7-34ab-4e52-9ab1-4bf29d857995",
+              "layouts": [
+                {
+                  "id": 0,
+                  "position": {
+                    "x": 0,
+                    "y": 100,
+                    "width": 640,
+                    "height": 280
+                  }
+                }
+              ],
+              "singleVisual": {
+                "visualType": "scatterChart",
+                "projections": {
+                  "X": [
+                    {
+                      "queryRef": "Sales.Total Sales"
+                    }
+                  ],
+                  "Y": [
+                    {
+                      "queryRef": "Sales.Total Profit"
+                    }
+                  ],
+                  "Details": [
+                    {
+                      "queryRef": "Sales.Category"
+                    }
+                  ]
+                },
+                "prototypeQuery": {
+                  "Version": 2,
+                  "From": [
+                    {
+                      "Name": "s",
+                      "Entity": "Sales",
+                      "Type": 0
+                    }
+                  ],
+                  "Select": [],
+                  "OrderBy": []
+                },
+                "objects": {
+                  "dataPoint": {
+                    "fill": {
+                      "solid": {
+                        "color": "#1f77b4"
+                      }
+                    }
+                  },
+                  "title": [
+                    {
+                      "properties": {
+                        "text": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Profit Analysis'"
+                            }
+                          }
+                        },
+                        "show": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "true"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        ],
+        "filters": [
+          {
+            "name": "Region Filter",
+            "field": "Region",
+            "type": "slicer",
+            "values": []
+          },
+          {
+            "name": "Category Filter",
+            "field": "Category",
+            "type": "slicer",
+            "values": []
+          },
+          {
+            "name": "Date Range",
+            "field": "OrderDate",
+            "type": "date_slicer",
+            "values": []
+          }
+        ],
+        "width": 1280,
+        "height": 720
+      }
+    ]
+  },
+  "metadata": {
+    "createdDate": "2025-06-23T16:22:11.167144",
+    "modifiedDate": "2025-06-23T16:22:11.167144",
+    "version": "1.0"
+  }
+}

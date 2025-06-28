@@ -1,0 +1,612 @@
+{
+  "file_info": {
+    "path": "C:\\QProjects\\TabvsPowerBI\\tableau_files\\sample_sales_report.twb",
+    "name": "sample_sales_report.twb",
+    "type": ".twb",
+    "size": 18474
+  },
+  "tableau_version": "18.1",
+  "datasources": [
+    {
+      "name": "federated.0abc123d",
+      "caption": "Sales Data",
+      "version": "18.1",
+      "inline": true,
+      "connections": [
+        {
+          "class": "federated",
+          "server": "",
+          "dbname": "",
+          "username": "",
+          "authentication": "",
+          "port": "",
+          "schema": "",
+          "warehouse": "",
+          "service": "",
+          "filename": "",
+          "directory": "",
+          "properties": {
+            "class": "federated"
+          }
+        },
+        {
+          "class": "sqlserver",
+          "server": "sql-server-01",
+          "dbname": "SalesDB",
+          "username": "",
+          "authentication": "sspi",
+          "port": "",
+          "schema": "",
+          "warehouse": "",
+          "service": "",
+          "filename": "",
+          "directory": "",
+          "properties": {
+            "authentication": "sspi",
+            "class": "sqlserver",
+            "dbname": "SalesDB",
+            "odbc-native-protocol": "",
+            "one-time-sql": "",
+            "server": "sql-server-01",
+            "username": ""
+          }
+        }
+      ],
+      "columns": [
+        {
+          "name": "[OrderID]",
+          "caption": "Order ID",
+          "datatype": "integer",
+          "role": "dimension",
+          "type": "ordinal",
+          "aggregation": "",
+          "hidden": false,
+          "calculation": null,
+          "default_format": "",
+          "semantic_role": "",
+          "geographic_role": ""
+        },
+        {
+          "name": "[CustomerID]",
+          "caption": "Customer ID",
+          "datatype": "string",
+          "role": "dimension",
+          "type": "nominal",
+          "aggregation": "",
+          "hidden": false,
+          "calculation": null,
+          "default_format": "",
+          "semantic_role": "",
+          "geographic_role": ""
+        },
+        {
+          "name": "[ProductName]",
+          "caption": "Product Name",
+          "datatype": "string",
+          "role": "dimension",
+          "type": "nominal",
+          "aggregation": "",
+          "hidden": false,
+          "calculation": null,
+          "default_format": "",
+          "semantic_role": "",
+          "geographic_role": ""
+        },
+        {
+          "name": "[Category]",
+          "caption": "Category",
+          "datatype": "string",
+          "role": "dimension",
+          "type": "nominal",
+          "aggregation": "",
+          "hidden": false,
+          "calculation": null,
+          "default_format": "",
+          "semantic_role": "",
+          "geographic_role": ""
+        },
+        {
+          "name": "[Region]",
+          "caption": "Region",
+          "datatype": "string",
+          "role": "dimension",
+          "type": "nominal",
+          "aggregation": "",
+          "hidden": false,
+          "calculation": null,
+          "default_format": "",
+          "semantic_role": "",
+          "geographic_role": ""
+        },
+        {
+          "name": "[OrderDate]",
+          "caption": "Order Date",
+          "datatype": "datetime",
+          "role": "dimension",
+          "type": "ordinal",
+          "aggregation": "",
+          "hidden": false,
+          "calculation": null,
+          "default_format": "",
+          "semantic_role": "",
+          "geographic_role": ""
+        },
+        {
+          "name": "[SalesAmount]",
+          "caption": "Sales Amount",
+          "datatype": "real",
+          "role": "measure",
+          "type": "quantitative",
+          "aggregation": "",
+          "hidden": false,
+          "calculation": null,
+          "default_format": "",
+          "semantic_role": "",
+          "geographic_role": ""
+        },
+        {
+          "name": "[Quantity]",
+          "caption": "Quantity",
+          "datatype": "integer",
+          "role": "measure",
+          "type": "quantitative",
+          "aggregation": "",
+          "hidden": false,
+          "calculation": null,
+          "default_format": "",
+          "semantic_role": "",
+          "geographic_role": ""
+        },
+        {
+          "name": "[Profit]",
+          "caption": "Profit",
+          "datatype": "real",
+          "role": "measure",
+          "type": "quantitative",
+          "aggregation": "",
+          "hidden": false,
+          "calculation": null,
+          "default_format": "",
+          "semantic_role": "",
+          "geographic_role": ""
+        },
+        {
+          "name": "[Calculation_001]",
+          "caption": "Profit Margin",
+          "datatype": "real",
+          "role": "measure",
+          "type": "quantitative",
+          "aggregation": "",
+          "hidden": false,
+          "calculation": {
+            "class": "tableau",
+            "formula": "SUM([Profit]) / SUM([SalesAmount])",
+            "formula_text": ""
+          },
+          "default_format": "",
+          "semantic_role": "",
+          "geographic_role": ""
+        },
+        {
+          "name": "[Calculation_002]",
+          "caption": "Sales Category",
+          "datatype": "string",
+          "role": "dimension",
+          "type": "nominal",
+          "aggregation": "",
+          "hidden": false,
+          "calculation": {
+            "class": "tableau",
+            "formula": "IF SUM([SalesAmount]) > 10000 THEN \"High Sales\" ELSEIF SUM([SalesAmount]) > 5000 THEN \"Medium Sales\" ELSE \"Low Sales\" END",
+            "formula_text": ""
+          },
+          "default_format": "",
+          "semantic_role": "",
+          "geographic_role": ""
+        },
+        {
+          "name": "[Calculation_003]",
+          "caption": "Year",
+          "datatype": "integer",
+          "role": "dimension",
+          "type": "ordinal",
+          "aggregation": "",
+          "hidden": false,
+          "calculation": {
+            "class": "tableau",
+            "formula": "YEAR([OrderDate])",
+            "formula_text": ""
+          },
+          "default_format": "",
+          "semantic_role": "",
+          "geographic_role": ""
+        },
+        {
+          "name": "[Calculation_004]",
+          "caption": "Quarter",
+          "datatype": "string",
+          "role": "dimension",
+          "type": "ordinal",
+          "aggregation": "",
+          "hidden": false,
+          "calculation": {
+            "class": "tableau",
+            "formula": "\"Q\" + STR(DATEPART(\"quarter\", [OrderDate]))",
+            "formula_text": ""
+          },
+          "default_format": "",
+          "semantic_role": "",
+          "geographic_role": ""
+        },
+        {
+          "name": "[Parameter 1]",
+          "caption": "Region Filter",
+          "datatype": "string",
+          "role": "measure",
+          "type": "nominal",
+          "aggregation": "",
+          "hidden": false,
+          "calculation": {
+            "class": "tableau",
+            "formula": "\"All\"",
+            "formula_text": ""
+          },
+          "default_format": "",
+          "semantic_role": "",
+          "geographic_role": ""
+        }
+      ],
+      "relations": [
+        {
+          "connection": "sqlserver.1a2b3c4d",
+          "name": "Sales",
+          "table": "[dbo].[Sales]",
+          "type": "table",
+          "join": "",
+          "text": ""
+        }
+      ],
+      "aliases": {}
+    },
+    {
+      "name": "federated.0abc123d",
+      "caption": "Sales Data",
+      "version": "",
+      "inline": false,
+      "connections": [],
+      "columns": [],
+      "relations": [],
+      "aliases": {}
+    },
+    {
+      "name": "federated.0abc123d",
+      "caption": "Sales Data",
+      "version": "",
+      "inline": false,
+      "connections": [],
+      "columns": [],
+      "relations": [],
+      "aliases": {}
+    },
+    {
+      "name": "federated.0abc123d",
+      "caption": "Sales Data",
+      "version": "",
+      "inline": false,
+      "connections": [],
+      "columns": [],
+      "relations": [],
+      "aliases": {}
+    },
+    {
+      "name": "federated.0abc123d",
+      "caption": "Sales Data",
+      "version": "",
+      "inline": false,
+      "connections": [],
+      "columns": [],
+      "relations": [],
+      "aliases": {}
+    }
+  ],
+  "worksheets": [
+    {
+      "name": "Sales by Region",
+      "view": {
+        "datasources": [
+          "federated.0abc123d"
+        ],
+        "shelves": {
+          "rows": [
+            "[federated.0abc123d].[none:Region:nk]"
+          ],
+          "columns": [
+            "[federated.0abc123d].[sum:SalesAmount:qk]"
+          ],
+          "color": [
+            "[federated.0abc123d].[none:Region:nk]"
+          ]
+        },
+        "filters": [],
+        "sorts": [
+          {
+            "field": "[federated.0abc123d].[sum:SalesAmount:qk]",
+            "ascending": false
+          }
+        ],
+        "marks": {}
+      },
+      "table": {},
+      "style": {}
+    },
+    {
+      "name": "Sales Trend",
+      "view": {
+        "datasources": [
+          "federated.0abc123d"
+        ],
+        "shelves": {
+          "columns": [
+            "[federated.0abc123d].[tmn:OrderDate:qk]"
+          ],
+          "rows": [
+            "[federated.0abc123d].[sum:SalesAmount:qk]"
+          ]
+        },
+        "filters": [],
+        "sorts": [
+          {
+            "field": "[federated.0abc123d].[tmn:OrderDate:qk]",
+            "ascending": true
+          }
+        ],
+        "marks": {}
+      },
+      "table": {},
+      "style": {}
+    },
+    {
+      "name": "Category Performance",
+      "view": {
+        "datasources": [
+          "federated.0abc123d"
+        ],
+        "shelves": {
+          "color": [
+            "[federated.0abc123d].[none:Category:nk]"
+          ],
+          "size": [
+            "[federated.0abc123d].[sum:SalesAmount:qk]"
+          ]
+        },
+        "filters": [],
+        "sorts": [],
+        "marks": {}
+      },
+      "table": {},
+      "style": {}
+    },
+    {
+      "name": "Profit Analysis",
+      "view": {
+        "datasources": [
+          "federated.0abc123d"
+        ],
+        "shelves": {
+          "columns": [
+            "[federated.0abc123d].[sum:SalesAmount:qk]"
+          ],
+          "rows": [
+            "[federated.0abc123d].[sum:Profit:qk]"
+          ],
+          "color": [
+            "[federated.0abc123d].[none:Category:nk]"
+          ]
+        },
+        "filters": [],
+        "sorts": [],
+        "marks": {}
+      },
+      "table": {},
+      "style": {}
+    }
+  ],
+  "dashboards": [
+    {
+      "name": "Sales Dashboard",
+      "size": {
+        "maxheight": "800",
+        "maxwidth": "1000",
+        "minheight": "800",
+        "minwidth": "1000"
+      },
+      "zones": [
+        {
+          "id": "4",
+          "name": "",
+          "type": "layout-basic",
+          "param": "",
+          "x": "0",
+          "y": "0",
+          "w": "100000",
+          "h": "100000"
+        }
+      ],
+      "device_layouts": []
+    }
+  ],
+  "parameters": [
+    {
+      "name": "[Parameter 1]",
+      "caption": "Region Filter",
+      "datatype": "string",
+      "param_domain_type": "list",
+      "value": "\"All\"",
+      "members": [
+        {
+          "alias": "All",
+          "value": "\"All\""
+        },
+        {
+          "alias": "North",
+          "value": "\"North\""
+        },
+        {
+          "alias": "South",
+          "value": "\"South\""
+        },
+        {
+          "alias": "East",
+          "value": "\"East\""
+        },
+        {
+          "alias": "West",
+          "value": "\"West\""
+        }
+      ]
+    }
+  ],
+  "calculated_fields": [
+    {
+      "name": "[Calculation_001]",
+      "caption": "Profit Margin",
+      "datatype": "real",
+      "role": "measure",
+      "type": "quantitative",
+      "formula": "SUM([Profit]) / SUM([SalesAmount])",
+      "class": "tableau",
+      "formula_text": ""
+    },
+    {
+      "name": "[Calculation_002]",
+      "caption": "Sales Category",
+      "datatype": "string",
+      "role": "dimension",
+      "type": "nominal",
+      "formula": "IF SUM([SalesAmount]) > 10000 THEN \"High Sales\" ELSEIF SUM([SalesAmount]) > 5000 THEN \"Medium Sales\" ELSE \"Low Sales\" END",
+      "class": "tableau",
+      "formula_text": ""
+    },
+    {
+      "name": "[Calculation_003]",
+      "caption": "Year",
+      "datatype": "integer",
+      "role": "dimension",
+      "type": "ordinal",
+      "formula": "YEAR([OrderDate])",
+      "class": "tableau",
+      "formula_text": ""
+    },
+    {
+      "name": "[Calculation_004]",
+      "caption": "Quarter",
+      "datatype": "string",
+      "role": "dimension",
+      "type": "ordinal",
+      "formula": "\"Q\" + STR(DATEPART(\"quarter\", [OrderDate]))",
+      "class": "tableau",
+      "formula_text": ""
+    },
+    {
+      "name": "[Parameter 1]",
+      "caption": "Region Filter",
+      "datatype": "string",
+      "role": "measure",
+      "type": "nominal",
+      "formula": "\"All\"",
+      "class": "tableau",
+      "formula_text": ""
+    }
+  ],
+  "filters": [],
+  "formatting": {},
+  "converted_formulas": [
+    {
+      "original_formula": "SUM([Profit]) / SUM([SalesAmount])",
+      "dax_formula": "DIVIDE(SUM(Sales[Profit]), SUM(Sales[SalesAmount]), 0)",
+      "field_name": "[Calculation_001]",
+      "field_role": "measure",
+      "formula_type": "standard",
+      "functions_used": [
+        "SUM",
+        "SUM"
+      ],
+      "fields_referenced": [
+        "Profit",
+        "SalesAmount"
+      ],
+      "conversion_success": true,
+      "conversion_issues": [],
+      "conversion_notes": []
+    },
+    {
+      "original_formula": "IF SUM([SalesAmount]) > 10000 THEN \"High Sales\" ELSEIF SUM([SalesAmount]) > 5000 THEN \"Medium Sales\" ELSE \"Low Sales\" END",
+      "dax_formula": "IF(SUM(Sales[SalesAmount]) > 10000, \"High Sales\" ELSEIF SUM(Sales[SalesAmount]) > 5000 THEN \"Medium Sales\", \"Low Sales\")",
+      "field_name": "[Calculation_002]",
+      "field_role": "dimension",
+      "formula_type": "conditional",
+      "functions_used": [
+        "SUM",
+        "SUM"
+      ],
+      "fields_referenced": [
+        "SalesAmount",
+        "SalesAmount"
+      ],
+      "conversion_success": true,
+      "conversion_issues": [],
+      "conversion_notes": []
+    },
+    {
+      "original_formula": "YEAR([OrderDate])",
+      "dax_formula": "YEAR(Sales[OrderDate])",
+      "field_name": "[Calculation_003]",
+      "field_role": "dimension",
+      "formula_type": "standard",
+      "functions_used": [
+        "YEAR"
+      ],
+      "fields_referenced": [
+        "OrderDate"
+      ],
+      "conversion_success": true,
+      "conversion_issues": [],
+      "conversion_notes": []
+    },
+    {
+      "original_formula": "\"Q\" + STR(DATEPART(\"quarter\", [OrderDate]))",
+      "dax_formula": "\"Q\" + FORMAT(FORMAT(\"quarter\", Sales[OrderDate]))",
+      "field_name": "[Calculation_004]",
+      "field_role": "dimension",
+      "formula_type": "standard",
+      "functions_used": [
+        "STR",
+        "DATEPART"
+      ],
+      "fields_referenced": [
+        "OrderDate"
+      ],
+      "conversion_success": true,
+      "conversion_issues": [],
+      "conversion_notes": []
+    },
+    {
+      "original_formula": "\"All\"",
+      "dax_formula": "\"All\"",
+      "field_name": "[Parameter 1]",
+      "field_role": "measure",
+      "formula_type": "standard",
+      "functions_used": [],
+      "fields_referenced": [],
+      "conversion_success": true,
+      "conversion_issues": [],
+      "conversion_notes": []
+    }
+  ],
+  "conversion_summary": {
+    "total_fields": 5,
+    "successful_conversions": 5,
+    "failed_conversions": 0,
+    "success_rate": 100.0
+  }
+}

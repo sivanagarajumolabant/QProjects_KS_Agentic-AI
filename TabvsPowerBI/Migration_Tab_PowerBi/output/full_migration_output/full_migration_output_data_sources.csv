@@ -1,0 +1,2 @@
+Data Source Name,Caption,Connection Type,Server,Database,Authentication,Table/Schema,Columns Count,Has Data,Power BI Connector
+federated.0abc123d,Sales Data,SQL Server,sql-server-01,SalesDB,sspi,[dbo].[Sales],14,Yes,SQL Server database

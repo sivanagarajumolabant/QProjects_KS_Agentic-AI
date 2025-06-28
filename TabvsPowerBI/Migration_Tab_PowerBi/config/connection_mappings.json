@@ -1,0 +1,296 @@
+{
+  "connection_mappings": {
+    "sqlserver": {
+      "powerbi_type": "SqlServer",
+      "supported": true,
+      "authentication_methods": ["windows", "database", "azure_ad"],
+      "connection_properties": {
+        "server": "required",
+        "database": "required",
+        "port": "optional",
+        "encrypt": "optional"
+      }
+    },
+    "oracle": {
+      "powerbi_type": "Oracle",
+      "supported": true,
+      "authentication_methods": ["database"],
+      "connection_properties": {
+        "server": "required",
+        "service_name": "required",
+        "port": "optional"
+      }
+    },
+    "mysql": {
+      "powerbi_type": "MySQL",
+      "supported": true,
+      "authentication_methods": ["database"],
+      "connection_properties": {
+        "server": "required",
+        "database": "required",
+        "port": "optional"
+      }
+    },
+    "postgresql": {
+      "powerbi_type": "PostgreSQL",
+      "supported": true,
+      "authentication_methods": ["database"],
+      "connection_properties": {
+        "server": "required",
+        "database": "required",
+        "port": "optional"
+      }
+    },
+    "excel": {
+      "powerbi_type": "Excel",
+      "supported": true,
+      "authentication_methods": ["none"],
+      "connection_properties": {
+        "file_path": "required",
+        "worksheet": "optional"
+      }
+    },
+    "csv": {
+      "powerbi_type": "Csv",
+      "supported": true,
+      "authentication_methods": ["none"],
+      "connection_properties": {
+        "file_path": "required",
+        "delimiter": "optional",
+        "encoding": "optional"
+      }
+    },
+    "json": {
+      "powerbi_type": "Json",
+      "supported": true,
+      "authentication_methods": ["none"],
+      "connection_properties": {
+        "file_path": "required"
+      }
+    },
+    "xml": {
+      "powerbi_type": "Xml",
+      "supported": true,
+      "authentication_methods": ["none"],
+      "connection_properties": {
+        "file_path": "required"
+      }
+    },
+    "web": {
+      "powerbi_type": "Web",
+      "supported": true,
+      "authentication_methods": ["none", "basic", "api_key"],
+      "connection_properties": {
+        "url": "required",
+        "timeout": "optional"
+      }
+    },
+    "odata": {
+      "powerbi_type": "OData",
+      "supported": true,
+      "authentication_methods": ["none", "basic", "api_key"],
+      "connection_properties": {
+        "url": "required"
+      }
+    },
+    "sharepoint": {
+      "powerbi_type": "SharePointList",
+      "supported": true,
+      "authentication_methods": ["windows", "azure_ad"],
+      "connection_properties": {
+        "site_url": "required",
+        "list_name": "required"
+      }
+    },
+    "salesforce": {
+      "powerbi_type": "Salesforce",
+      "supported": true,
+      "authentication_methods": ["oauth"],
+      "connection_properties": {
+        "login_url": "optional",
+        "api_version": "optional"
+      }
+    },
+    "azure_sql": {
+      "powerbi_type": "AzureSqlDatabase",
+      "supported": true,
+      "authentication_methods": ["database", "azure_ad"],
+      "connection_properties": {
+        "server": "required",
+        "database": "required"
+      }
+    },
+    "snowflake": {
+      "powerbi_type": "Snowflake",
+      "supported": true,
+      "authentication_methods": ["database", "azure_ad"],
+      "connection_properties": {
+        "server": "required",
+        "warehouse": "required",
+        "database": "required",
+        "schema": "optional"
+      }
+    },
+    "bigquery": {
+      "powerbi_type": "GoogleBigQuery",
+      "supported": true,
+      "authentication_methods": ["oauth"],
+      "connection_properties": {
+        "project_id": "required",
+        "dataset_id": "optional"
+      }
+    },
+    "redshift": {
+      "powerbi_type": "AmazonRedshift",
+      "supported": true,
+      "authentication_methods": ["database"],
+      "connection_properties": {
+        "server": "required",
+        "database": "required",
+        "port": "optional"
+      }
+    },
+    "teradata": {
+      "powerbi_type": "Teradata",
+      "supported": true,
+      "authentication_methods": ["database"],
+      "connection_properties": {
+        "server": "required",
+        "database": "optional"
+      }
+    },
+    "sap_hana": {
+      "powerbi_type": "SapHana",
+      "supported": true,
+      "authentication_methods": ["database"],
+      "connection_properties": {
+        "server": "required",
+        "database": "optional"
+      }
+    },
+    "db2": {
+      "powerbi_type": "Db2",
+      "supported": true,
+      "authentication_methods": ["database"],
+      "connection_properties": {
+        "server": "required",
+        "database": "required"
+      }
+    },
+    "access": {
+      "powerbi_type": "Access",
+      "supported": true,
+      "authentication_methods": ["none"],
+      "connection_properties": {
+        "file_path": "required"
+      }
+    },
+    "sqlite": {
+      "powerbi_type": "Sqlite",
+      "supported": true,
+      "authentication_methods": ["none"],
+      "connection_properties": {
+        "file_path": "required"
+      }
+    },
+    "odbc": {
+      "powerbi_type": "Odbc",
+      "supported": true,
+      "authentication_methods": ["none", "database"],
+      "connection_properties": {
+        "connection_string": "required"
+      }
+    },
+    "oledb": {
+      "powerbi_type": "OleDb",
+      "supported": true,
+      "authentication_methods": ["none", "database"],
+      "connection_properties": {
+        "connection_string": "required"
+      }
+    }
+  },
+  "unsupported_connections": {
+    "tableau_extract": {
+      "reason": "Proprietary format",
+      "workaround": "Export to supported format",
+      "alternative": "csv"
+    },
+    "tableau_server": {
+      "reason": "Server-specific connection",
+      "workaround": "Use underlying data source",
+      "alternative": "direct_connection"
+    },
+    "custom_connectors": {
+      "reason": "Custom implementation",
+      "workaround": "Use equivalent Power BI connector",
+      "alternative": "web"
+    }
+  },
+  "authentication_mapping": {
+    "tableau_auth": {
+      "embed_password": "store_credentials",
+      "prompt": "prompt_for_credentials",
+      "server_run_as": "use_service_account",
+      "viewer_credentials": "use_viewer_credentials",
+      "oauth": "oauth"
+    },
+    "powerbi_auth": {
+      "store_credentials": "stored",
+      "prompt_for_credentials": "prompt",
+      "use_service_account": "service_principal",
+      "use_viewer_credentials": "user_credentials",
+      "oauth": "oauth2"
+    }
+  },
+  "connection_conversion_rules": {
+    "server_name_patterns": {
+      "localhost": "localhost",
+      "127.0.0.1": "localhost",
+      "(local)": "localhost"
+    },
+    "port_defaults": {
+      "sqlserver": 1433,
+      "mysql": 3306,
+      "postgresql": 5432,
+      "oracle": 1521,
+      "teradata": 1025
+    },
+    "ssl_settings": {
+      "require_ssl": true,
+      "verify_certificate": true,
+      "encrypt_connection": true
+    }
+  },
+  "data_gateway_requirements": {
+    "on_premises_sources": [
+      "sqlserver",
+      "oracle", 
+      "mysql",
+      "postgresql",
+      "teradata",
+      "sap_hana",
+      "db2",
+      "access",
+      "sqlite",
+      "odbc",
+      "oledb"
+    ],
+    "cloud_sources": [
+      "azure_sql",
+      "snowflake",
+      "bigquery",
+      "redshift",
+      "salesforce",
+      "sharepoint",
+      "web",
+      "odata"
+    ],
+    "file_sources": [
+      "excel",
+      "csv",
+      "json",
+      "xml"
+    ]
+  }
+}

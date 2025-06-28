@@ -1,0 +1,243 @@
+{
+  "chart_mappings": {
+    "bar": {
+      "horizontal": "clusteredBarChart",
+      "vertical": "clusteredColumnChart",
+      "stacked": "stackedBarChart",
+      "stacked_horizontal": "stackedBarChart",
+      "stacked_vertical": "stackedColumnChart",
+      "grouped": "clusteredBarChart",
+      "default": "clusteredBarChart"
+    },
+    "line": {
+      "single": "lineChart",
+      "multiple": "lineChart",
+      "area": "areaChart",
+      "stacked_area": "stackedAreaChart",
+      "step": "lineChart",
+      "dual_axis": "comboChart",
+      "default": "lineChart"
+    },
+    "scatter": {
+      "basic": "scatterChart",
+      "bubble": "scatterChart",
+      "default": "scatterChart"
+    },
+    "pie": {
+      "pie": "pieChart",
+      "donut": "donutChart",
+      "default": "pieChart"
+    },
+    "map": {
+      "symbol": "map",
+      "filled": "filledMap",
+      "heat": "map",
+      "density": "map",
+      "default": "map"
+    },
+    "text": {
+      "table": "table",
+      "crosstab": "matrix",
+      "highlight_table": "table",
+      "default": "table"
+    },
+    "treemap": {
+      "basic": "treemap",
+      "default": "treemap"
+    },
+    "gantt": {
+      "basic": "ganttChart",
+      "default": "ganttChart"
+    },
+    "bullet": {
+      "basic": "gauge",
+      "default": "gauge"
+    },
+    "histogram": {
+      "basic": "columnChart",
+      "default": "columnChart"
+    },
+    "box_plot": {
+      "basic": "boxAndWhisker",
+      "default": "boxAndWhisker"
+    },
+    "waterfall": {
+      "basic": "waterfallChart",
+      "default": "waterfallChart"
+    },
+    "funnel": {
+      "basic": "funnelChart",
+      "default": "funnelChart"
+    }
+  },
+  "mark_type_mappings": {
+    "automatic": "auto",
+    "bar": "bar",
+    "line": "line",
+    "area": "area",
+    "square": "square",
+    "circle": "circle",
+    "shape": "shape",
+    "text": "text",
+    "map": "map",
+    "pie": "pie",
+    "gantt": "gantt",
+    "polygon": "polygon",
+    "density": "density"
+  },
+  "encoding_mappings": {
+    "tableau_shelves": {
+      "columns": "x_axis",
+      "rows": "y_axis",
+      "color": "legend",
+      "size": "size",
+      "detail": "details",
+      "tooltip": "tooltips",
+      "label": "data_labels",
+      "shape": "shape",
+      "path": "path",
+      "angle": "angle",
+      "text": "text"
+    },
+    "powerbi_wells": {
+      "x_axis": ["Axis", "Category", "X Axis"],
+      "y_axis": ["Values", "Y Axis"],
+      "legend": ["Legend", "Series", "Color saturation"],
+      "size": ["Size", "Bubble size"],
+      "details": ["Details", "Drill through"],
+      "tooltips": ["Tooltips"],
+      "data_labels": ["Data labels"],
+      "shape": ["Shape"],
+      "path": ["Path"],
+      "angle": ["Angle"],
+      "text": ["Text"]
+    }
+  },
+  "interaction_mappings": {
+    "tableau_actions": {
+      "filter": "cross_filter",
+      "highlight": "cross_highlight",
+      "url": "url_action",
+      "parameter": "parameter_action",
+      "set": "set_action"
+    },
+    "powerbi_interactions": {
+      "cross_filter": "filter",
+      "cross_highlight": "highlight",
+      "url_action": "web_url",
+      "parameter_action": "bookmark",
+      "set_action": "bookmark"
+    }
+  },
+  "formatting_mappings": {
+    "color_palettes": {
+      "tableau_blue": "#1f77b4",
+      "tableau_orange": "#ff7f0e",
+      "tableau_green": "#2ca02c",
+      "tableau_red": "#d62728",
+      "tableau_purple": "#9467bd",
+      "tableau_brown": "#8c564b",
+      "tableau_pink": "#e377c2",
+      "tableau_gray": "#7f7f7f",
+      "tableau_olive": "#bcbd22",
+      "tableau_cyan": "#17becf"
+    },
+    "font_mappings": {
+      "tableau_book": "Segoe UI",
+      "arial": "Arial",
+      "helvetica": "Segoe UI",
+      "times": "Times New Roman",
+      "courier": "Courier New"
+    },
+    "number_formats": {
+      "number": "General",
+      "currency": "Currency",
+      "percentage": "Percentage",
+      "scientific": "Scientific",
+      "custom": "Custom"
+    }
+  },
+  "layout_mappings": {
+    "dashboard_containers": {
+      "horizontal": "horizontal_container",
+      "vertical": "vertical_container",
+      "grid": "grid_container",
+      "tabbed": "tabbed_container",
+      "floating": "floating_container"
+    },
+    "sizing_modes": {
+      "fixed": "fixed_size",
+      "automatic": "fit_to_page",
+      "range": "fit_to_width"
+    }
+  },
+  "filter_mappings": {
+    "tableau_filters": {
+      "dimension": "basic_filter",
+      "measure": "advanced_filter",
+      "date": "date_filter",
+      "context": "context_filter",
+      "extract": "extract_filter"
+    },
+    "powerbi_filters": {
+      "basic_filter": "basic_filtering",
+      "advanced_filter": "advanced_filtering",
+      "date_filter": "relative_date_filtering",
+      "context_filter": "page_level_filters",
+      "extract_filter": "report_level_filters"
+    }
+  },
+  "unsupported_features": {
+    "tableau_specific": [
+      "sets",
+      "groups",
+      "bins",
+      "reference_lines",
+      "trend_lines",
+      "forecasting",
+      "clustering",
+      "story_points",
+      "custom_geocoding",
+      "web_data_connectors"
+    ],
+    "workarounds": {
+      "sets": "use_calculated_fields",
+      "groups": "use_calculated_fields",
+      "bins": "use_calculated_columns",
+      "reference_lines": "use_analytics_pane",
+      "trend_lines": "use_analytics_pane",
+      "forecasting": "use_analytics_pane",
+      "clustering": "use_custom_visuals",
+      "story_points": "use_bookmarks",
+      "custom_geocoding": "use_shape_maps",
+      "web_data_connectors": "use_web_connector"
+    }
+  },
+  "compatibility_matrix": {
+    "high_compatibility": [
+      "bar",
+      "line", 
+      "scatter",
+      "pie",
+      "text",
+      "map"
+    ],
+    "medium_compatibility": [
+      "treemap",
+      "bullet",
+      "histogram",
+      "waterfall"
+    ],
+    "low_compatibility": [
+      "gantt",
+      "box_plot",
+      "funnel"
+    ],
+    "requires_custom_visual": [
+      "sankey",
+      "chord",
+      "network",
+      "radar"
+    ]
+  }
+}

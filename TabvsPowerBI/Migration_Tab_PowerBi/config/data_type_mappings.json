@@ -1,0 +1,172 @@
+{
+  "type_mappings": {
+    "integer": "Int64",
+    "real": "Double",
+    "string": "String",
+    "datetime": "DateTime",
+    "date": "DateTime",
+    "boolean": "Boolean",
+    "number": "Double",
+    "text": "String",
+    "decimal": "Decimal",
+    "float": "Double",
+    "int": "Int64",
+    "varchar": "String",
+    "char": "String",
+    "nvarchar": "String",
+    "nchar": "String",
+    "bit": "Boolean",
+    "tinyint": "Int64",
+    "smallint": "Int64",
+    "bigint": "Int64",
+    "money": "Currency",
+    "smallmoney": "Currency",
+    "numeric": "Decimal",
+    "time": "Time",
+    "timestamp": "DateTime",
+    "binary": "Binary",
+    "varbinary": "Binary",
+    "image": "Binary",
+    "uniqueidentifier": "String",
+    "xml": "String",
+    "json": "String"
+  },
+  "aggregation_mappings": {
+    "Sum": "Sum",
+    "Count": "Count",
+    "CountDistinct": "DistinctCount",
+    "Average": "Average",
+    "Min": "Minimum",
+    "Max": "Maximum",
+    "None": "DoNotSummarize",
+    "Year": "DoNotSummarize",
+    "Month": "DoNotSummarize",
+    "Day": "DoNotSummarize"
+  },
+  "role_mappings": {
+    "dimension": "Dimension",
+    "measure": "Measure",
+    "attribute": "Dimension",
+    "unknown": "Dimension"
+  },
+  "format_mappings": {
+    "currency": {
+      "powerbi_format": "Currency",
+      "format_string": "\"$\"#,0.00;(\"$\"#,0.00)"
+    },
+    "percentage": {
+      "powerbi_format": "Percentage", 
+      "format_string": "0.00%;-0.00%;0.00%"
+    },
+    "number": {
+      "powerbi_format": "WholeNumber",
+      "format_string": "#,0"
+    },
+    "decimal": {
+      "powerbi_format": "DecimalNumber",
+      "format_string": "#,0.00"
+    },
+    "date": {
+      "powerbi_format": "DateTimeGeneral",
+      "format_string": "General Date"
+    },
+    "datetime": {
+      "powerbi_format": "DateTimeGeneral",
+      "format_string": "General Date"
+    },
+    "time": {
+      "powerbi_format": "DateTimeGeneral",
+      "format_string": "h:mm:ss AM/PM"
+    },
+    "text": {
+      "powerbi_format": "General",
+      "format_string": "General"
+    }
+  },
+  "tableau_remote_types": {
+    "0": "String",
+    "1": "Boolean", 
+    "2": "DateTime",
+    "3": "Date",
+    "4": "Int64",
+    "5": "Double",
+    "6": "String",
+    "7": "String",
+    "8": "String",
+    "9": "String",
+    "10": "String",
+    "11": "DateTime",
+    "12": "String",
+    "93": "DateTime",
+    "130": "String",
+    "131": "Decimal"
+  },
+  "powerbi_data_categories": {
+    "address": "Address",
+    "city": "City",
+    "continent": "Continent", 
+    "country": "Country",
+    "county": "County",
+    "latitude": "Latitude",
+    "longitude": "Longitude",
+    "place": "Place",
+    "postal_code": "PostalCode",
+    "state_province": "StateOrProvince",
+    "web_url": "WebURL",
+    "image_url": "ImageURL",
+    "barcode": "Barcode"
+  },
+  "conversion_rules": {
+    "string_to_number": {
+      "method": "VALUE",
+      "error_handling": "IFERROR"
+    },
+    "number_to_string": {
+      "method": "FORMAT",
+      "default_format": "General"
+    },
+    "date_to_string": {
+      "method": "FORMAT",
+      "default_format": "yyyy-mm-dd"
+    },
+    "string_to_date": {
+      "method": "DATEVALUE",
+      "error_handling": "IFERROR"
+    },
+    "boolean_to_string": {
+      "method": "IF",
+      "true_value": "True",
+      "false_value": "False"
+    },
+    "string_to_boolean": {
+      "method": "IF",
+      "condition": "UPPER({field}) = \"TRUE\""
+    }
+  },
+  "null_handling": {
+    "tableau_null_functions": {
+      "ISNULL": "ISBLANK",
+      "IFNULL": "IF(ISBLANK({field}), {replacement}, {field})",
+      "ZN": "IF(ISBLANK({field}), 0, {field})"
+    },
+    "powerbi_blank_handling": {
+      "ISBLANK": "ISBLANK",
+      "BLANK": "BLANK",
+      "COALESCE": "COALESCE"
+    }
+  },
+  "special_cases": {
+    "tableau_generated_fields": {
+      "Measure Names": "skip",
+      "Measure Values": "skip", 
+      "Number of Records": "COUNTROWS",
+      "Latitude (generated)": "geographic_role",
+      "Longitude (generated)": "geographic_role"
+    },
+    "calculated_field_patterns": {
+      "attr_function": "VALUES",
+      "size_function": "COUNTROWS",
+      "index_function": "RANKX"
+    }
+  }
+}

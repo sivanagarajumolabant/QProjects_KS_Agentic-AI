@@ -1,0 +1,119 @@
+{
+  "conversion_info": {
+    "step": "Step 2 - DAX Conversion",
+    "created_date": "2025-06-23T16:16:26.278528",
+    "total_measures": 7,
+    "total_calculated_columns": 3
+  },
+  "original_calculated_fields": 4,
+  "dax_measures": [
+    {
+      "name": "Profit Margin",
+      "dax_formula": "DIVIDE(SUM(Sales[Profit]), SUM(Sales[SalesAmount]), 0)",
+      "format": "Percentage",
+      "description": "Profit margin percentage calculation",
+      "type": "measure",
+      "original_tableau": "SUM([Profit]) / SUM([SalesAmount])"
+    }
+  ],
+  "dax_calculated_columns": [
+    {
+      "name": "Sales Category",
+      "dax_formula": "IF(SUM(Sales[SalesAmount]) > 10000, \"High Sales\", IF(SUM(Sales[SalesAmount]) > 5000, \"Medium Sales\", \"Low Sales\"))",
+      "datatype": "string",
+      "description": "Categorizes sales amounts into High/Medium/Low",
+      "type": "calculated_column",
+      "original_tableau": "IF SUM([SalesAmount]) > 10000 THEN \"High Sales\" ELSEIF SUM([SalesAmount]) > 5000 THEN \"Medium Sales\" ELSE \"Low Sales\" END"
+    },
+    {
+      "name": "Year",
+      "dax_formula": "YEAR(Sales[OrderDate])",
+      "datatype": "integer",
+      "description": "Extract year from order date",
+      "type": "calculated_column",
+      "original_tableau": "YEAR([OrderDate])"
+    },
+    {
+      "name": "Quarter",
+      "dax_formula": "\"Q\" & FORMAT(Sales[OrderDate], \"Q\")",
+      "datatype": "string",
+      "description": "Extract quarter from order date (Q1, Q2, Q3, Q4)",
+      "type": "calculated_column",
+      "original_tableau": "\"Q\" + STR(DATEPART(\"quarter\", [OrderDate]))"
+    }
+  ],
+  "enhanced_measures": [
+    {
+      "name": "Total Sales",
+      "dax_formula": "SUM(Sales[SalesAmount])",
+      "format": "Currency",
+      "description": "Total sales amount",
+      "type": "measure"
+    },
+    {
+      "name": "Total Profit",
+      "dax_formula": "SUM(Sales[Profit])",
+      "format": "Currency",
+      "description": "Total profit amount",
+      "type": "measure"
+    },
+    {
+      "name": "Total Quantity",
+      "dax_formula": "SUM(Sales[Quantity])",
+      "format": "Whole Number",
+      "description": "Total quantity sold",
+      "type": "measure"
+    },
+    {
+      "name": "Average Order Value",
+      "dax_formula": "DIVIDE(SUM(Sales[SalesAmount]), DISTINCTCOUNT(Sales[OrderID]), 0)",
+      "format": "Currency",
+      "description": "Average value per order",
+      "type": "measure"
+    },
+    {
+      "name": "Order Count",
+      "dax_formula": "DISTINCTCOUNT(Sales[OrderID])",
+      "format": "Whole Number",
+      "description": "Total number of orders",
+      "type": "measure"
+    },
+    {
+      "name": "Customer Count",
+      "dax_formula": "DISTINCTCOUNT(Sales[CustomerID])",
+      "format": "Whole Number",
+      "description": "Total number of customers",
+      "type": "measure"
+    }
+  ],
+  "validation_results": [
+    {
+      "name": "Profit Margin",
+      "type": "measure",
+      "formula": "DIVIDE(SUM(Sales[Profit]), SUM(Sales[SalesAmount]), 0)",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "name": "Sales Category",
+      "type": "calculated_column",
+      "formula": "IF(SUM(Sales[SalesAmount]) > 10000, \"High Sales\", IF(SUM(Sales[SalesAmount]) > 5000, \"Medium Sales\", \"Low Sales\"))",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "name": "Year",
+      "type": "calculated_column",
+      "formula": "YEAR(Sales[OrderDate])",
+      "valid": true,
+      "issues": []
+    },
+    {
+      "name": "Quarter",
+      "type": "calculated_column",
+      "formula": "\"Q\" & FORMAT(Sales[OrderDate], \"Q\")",
+      "valid": true,
+      "issues": []
+    }
+  ]
+}

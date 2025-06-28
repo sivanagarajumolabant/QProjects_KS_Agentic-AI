@@ -1,0 +1,145 @@
+{
+  "dataset_info": {
+    "name": "Sales Data",
+    "description": "Sample sales dataset converted from Tableau",
+    "created_date": "2025-06-23T16:11:39.720647",
+    "record_count": 30,
+    "source_type": "CSV",
+    "source_path": "tableau_files/sample_sales_data.csv"
+  },
+  "connection_info": {
+    "original_tableau": {
+      "type": "SQL Server",
+      "server": "sql-server-01",
+      "database": "SalesDB",
+      "table": "[dbo].[Sales]",
+      "authentication": "Windows Authentication"
+    },
+    "powerbi_equivalent": {
+      "type": "CSV",
+      "path": "tableau_files/sample_sales_data.csv",
+      "note": "Using CSV for demo - would be SQL Server in production"
+    }
+  },
+  "base_fields": [
+    {
+      "name": "OrderID",
+      "datatype": "integer",
+      "role": "dimension",
+      "type": "ordinal",
+      "aggregation": "Count"
+    },
+    {
+      "name": "CustomerID",
+      "datatype": "string",
+      "role": "dimension",
+      "type": "nominal",
+      "aggregation": "Count"
+    },
+    {
+      "name": "ProductName",
+      "datatype": "string",
+      "role": "dimension",
+      "type": "nominal",
+      "aggregation": "Count"
+    },
+    {
+      "name": "Category",
+      "datatype": "string",
+      "role": "dimension",
+      "type": "nominal",
+      "aggregation": "Count"
+    },
+    {
+      "name": "Region",
+      "datatype": "string",
+      "role": "dimension",
+      "type": "nominal",
+      "aggregation": "Count"
+    },
+    {
+      "name": "OrderDate",
+      "datatype": "datetime",
+      "role": "dimension",
+      "type": "ordinal",
+      "aggregation": "Year"
+    },
+    {
+      "name": "SalesAmount",
+      "datatype": "real",
+      "role": "measure",
+      "type": "quantitative",
+      "aggregation": "Sum"
+    },
+    {
+      "name": "Quantity",
+      "datatype": "integer",
+      "role": "measure",
+      "type": "quantitative",
+      "aggregation": "Sum"
+    },
+    {
+      "name": "Profit",
+      "datatype": "real",
+      "role": "measure",
+      "type": "quantitative",
+      "aggregation": "Sum"
+    }
+  ],
+  "calculated_fields": [
+    {
+      "name": "Profit Margin",
+      "tableau_formula": "SUM([Profit]) / SUM([SalesAmount])",
+      "dax_formula": "DIVIDE(SUM(Sales[Profit]), SUM(Sales[SalesAmount]), 0)",
+      "datatype": "real",
+      "role": "measure",
+      "description": "Profit margin percentage calculation"
+    },
+    {
+      "name": "Sales Category",
+      "tableau_formula": "IF SUM([SalesAmount]) > 10000 THEN \"High Sales\" ELSEIF SUM([SalesAmount]) > 5000 THEN \"Medium Sales\" ELSE \"Low Sales\" END",
+      "dax_formula": "IF(SUM(Sales[SalesAmount]) > 10000, \"High Sales\", IF(SUM(Sales[SalesAmount]) > 5000, \"Medium Sales\", \"Low Sales\"))",
+      "datatype": "string",
+      "role": "dimension",
+      "description": "Categorizes sales amounts into High/Medium/Low"
+    },
+    {
+      "name": "Year",
+      "tableau_formula": "YEAR([OrderDate])",
+      "dax_formula": "YEAR(Sales[OrderDate])",
+      "datatype": "integer",
+      "role": "dimension",
+      "description": "Extract year from order date"
+    },
+    {
+      "name": "Quarter",
+      "tableau_formula": "\"Q\" + STR(DATEPART(\"quarter\", [OrderDate]))",
+      "dax_formula": "\"Q\" & FORMAT(Sales[OrderDate], \"Q\")",
+      "datatype": "string",
+      "role": "dimension",
+      "description": "Extract quarter from order date (Q1, Q2, Q3, Q4)"
+    }
+  ],
+  "data_summary": {
+    "total_sales": 9972.699999999999,
+    "total_profit": 3000.699999999999,
+    "total_quantity": 47,
+    "unique_customers": 30,
+    "unique_products": 30,
+    "regions": [
+      "North",
+      "South",
+      "East",
+      "West"
+    ],
+    "categories": [
+      "Electronics",
+      "Furniture",
+      "Office Supplies"
+    ],
+    "date_range": {
+      "start": "2023-01-15T00:00:00",
+      "end": "2023-03-10T00:00:00"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+-- Power BI DAX Script
+-- Generated from Tableau to Power BI Migration
+-- Created: 2025-06-23 16:16:26
+
+-- MEASURES
+-- ========
+
+-- Profit margin percentage calculation
+Profit Margin = DIVIDE(SUM(Sales[Profit]), SUM(Sales[SalesAmount]), 0)
+
+-- Total sales amount
+Total Sales = SUM(Sales[SalesAmount])
+
+-- Total profit amount
+Total Profit = SUM(Sales[Profit])
+
+-- Total quantity sold
+Total Quantity = SUM(Sales[Quantity])
+
+-- Average value per order
+Average Order Value = DIVIDE(SUM(Sales[SalesAmount]), DISTINCTCOUNT(Sales[OrderID]), 0)
+
+-- Total number of orders
+Order Count = DISTINCTCOUNT(Sales[OrderID])
+
+-- Total number of customers
+Customer Count = DISTINCTCOUNT(Sales[CustomerID])
+
+-- CALCULATED COLUMNS
+-- ==================
+
+-- Categorizes sales amounts into High/Medium/Low
+Sales Category = IF(SUM(Sales[SalesAmount]) > 10000, "High Sales", IF(SUM(Sales[SalesAmount]) > 5000, "Medium Sales", "Low Sales"))
+
+-- Extract year from order date
+Year = YEAR(Sales[OrderDate])
+
+-- Extract quarter from order date (Q1, Q2, Q3, Q4)
+Quarter = "Q" & FORMAT(Sales[OrderDate], "Q")

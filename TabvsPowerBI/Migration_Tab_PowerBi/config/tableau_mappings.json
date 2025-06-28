@@ -1,0 +1,209 @@
+{
+  "version_mappings": {
+    "8.0": {
+      "supported": true,
+      "schema_version": "8.0",
+      "features": ["basic_charts", "calculations", "dashboards"],
+      "limitations": ["limited_lod", "basic_formatting"]
+    },
+    "8.1": {
+      "supported": true,
+      "schema_version": "8.1", 
+      "features": ["basic_charts", "calculations", "dashboards", "story_points"],
+      "limitations": ["limited_lod"]
+    },
+    "8.2": {
+      "supported": true,
+      "schema_version": "8.2",
+      "features": ["basic_charts", "calculations", "dashboards", "story_points", "lod_expressions"],
+      "limitations": []
+    },
+    "9.0": {
+      "supported": true,
+      "schema_version": "9.0",
+      "features": ["basic_charts", "calculations", "dashboards", "story_points", "lod_expressions", "clustering"],
+      "limitations": []
+    },
+    "9.1": {
+      "supported": true,
+      "schema_version": "9.1",
+      "features": ["basic_charts", "calculations", "dashboards", "story_points", "lod_expressions", "clustering", "forecasting"],
+      "limitations": []
+    },
+    "9.2": {
+      "supported": true,
+      "schema_version": "9.2",
+      "features": ["basic_charts", "calculations", "dashboards", "story_points", "lod_expressions", "clustering", "forecasting", "cross_database_joins"],
+      "limitations": []
+    },
+    "9.3": {
+      "supported": true,
+      "schema_version": "9.3",
+      "features": ["basic_charts", "calculations", "dashboards", "story_points", "lod_expressions", "clustering", "forecasting", "cross_database_joins", "union"],
+      "limitations": []
+    },
+    "10.0": {
+      "supported": true,
+      "schema_version": "10.0",
+      "features": ["basic_charts", "calculations", "dashboards", "story_points", "lod_expressions", "clustering", "forecasting", "cross_database_joins", "union", "device_layouts"],
+      "limitations": []
+    },
+    "10.1": {
+      "supported": true,
+      "schema_version": "10.1",
+      "features": ["basic_charts", "calculations", "dashboards", "story_points", "lod_expressions", "clustering", "forecasting", "cross_database_joins", "union", "device_layouts", "custom_sql"],
+      "limitations": []
+    },
+    "10.2": {
+      "supported": true,
+      "schema_version": "10.2",
+      "features": ["basic_charts", "calculations", "dashboards", "story_points", "lod_expressions", "clustering", "forecasting", "cross_database_joins", "union", "device_layouts", "custom_sql", "extensions"],
+      "limitations": []
+    },
+    "10.3": {
+      "supported": true,
+      "schema_version": "10.3",
+      "features": ["basic_charts", "calculations", "dashboards", "story_points", "lod_expressions", "clustering", "forecasting", "cross_database_joins", "union", "device_layouts", "custom_sql", "extensions", "spatial_functions"],
+      "limitations": []
+    },
+    "10.4": {
+      "supported": true,
+      "schema_version": "10.4",
+      "features": ["basic_charts", "calculations", "dashboards", "story_points", "lod_expressions", "clustering", "forecasting", "cross_database_joins", "union", "device_layouts", "custom_sql", "extensions", "spatial_functions", "nested_sorting"],
+      "limitations": []
+    },
+    "10.5": {
+      "supported": true,
+      "schema_version": "10.5",
+      "features": ["basic_charts", "calculations", "dashboards", "story_points", "lod_expressions", "clustering", "forecasting", "cross_database_joins", "union", "device_layouts", "custom_sql", "extensions", "spatial_functions", "nested_sorting", "parameter_actions"],
+      "limitations": []
+    },
+    "2018.1": {
+      "supported": true,
+      "schema_version": "18.1",
+      "features": ["basic_charts", "calculations", "dashboards", "story_points", "lod_expressions", "clustering", "forecasting", "cross_database_joins", "union", "device_layouts", "custom_sql", "extensions", "spatial_functions", "nested_sorting", "parameter_actions", "density_marks"],
+      "limitations": []
+    },
+    "2018.2": {
+      "supported": true,
+      "schema_version": "18.2",
+      "features": ["basic_charts", "calculations", "dashboards", "story_points", "lod_expressions", "clustering", "forecasting", "cross_database_joins", "union", "device_layouts", "custom_sql", "extensions", "spatial_functions", "nested_sorting", "parameter_actions", "density_marks", "set_actions"],
+      "limitations": []
+    },
+    "2018.3": {
+      "supported": true,
+      "schema_version": "18.3",
+      "features": ["basic_charts", "calculations", "dashboards", "story_points", "lod_expressions", "clustering", "forecasting", "cross_database_joins", "union", "device_layouts", "custom_sql", "extensions", "spatial_functions", "nested_sorting", "parameter_actions", "density_marks", "set_actions", "transparent_sheets"],
+      "limitations": []
+    },
+    "2019.1": {
+      "supported": true,
+      "schema_version": "19.1",
+      "features": ["basic_charts", "calculations", "dashboards", "story_points", "lod_expressions", "clustering", "forecasting", "cross_database_joins", "union", "device_layouts", "custom_sql", "extensions", "spatial_functions", "nested_sorting", "parameter_actions", "density_marks", "set_actions", "transparent_sheets", "vector_maps"],
+      "limitations": []
+    },
+    "2019.2": {
+      "supported": true,
+      "schema_version": "19.2",
+      "features": ["basic_charts", "calculations", "dashboards", "story_points", "lod_expressions", "clustering", "forecasting", "cross_database_joins", "union", "device_layouts", "custom_sql", "extensions", "spatial_functions", "nested_sorting", "parameter_actions", "density_marks", "set_actions", "transparent_sheets", "vector_maps", "show_me"],
+      "limitations": []
+    },
+    "2019.3": {
+      "supported": true,
+      "schema_version": "19.3",
+      "features": ["basic_charts", "calculations", "dashboards", "story_points", "lod_expressions", "clustering", "forecasting", "cross_database_joins", "union", "device_layouts", "custom_sql", "extensions", "spatial_functions", "nested_sorting", "parameter_actions", "density_marks", "set_actions", "transparent_sheets", "vector_maps", "show_me", "explain_data"],
+      "limitations": []
+    },
+    "2019.4": {
+      "supported": true,
+      "schema_version": "19.4",
+      "features": ["basic_charts", "calculations", "dashboards", "story_points", "lod_expressions", "clustering", "forecasting", "cross_database_joins", "union", "device_layouts", "custom_sql", "extensions", "spatial_functions", "nested_sorting", "parameter_actions", "density_marks", "set_actions", "transparent_sheets", "vector_maps", "show_me", "explain_data", "data_interpreter"],
+      "limitations": []
+    },
+    "2020.1": {
+      "supported": true,
+      "schema_version": "20.1",
+      "features": ["basic_charts", "calculations", "dashboards", "story_points", "lod_expressions", "clustering", "forecasting", "cross_database_joins", "union", "device_layouts", "custom_sql", "extensions", "spatial_functions", "nested_sorting", "parameter_actions", "density_marks", "set_actions", "transparent_sheets", "vector_maps", "show_me", "explain_data", "data_interpreter", "buffer_calculations"],
+      "limitations": []
+    },
+    "2020.2": {
+      "supported": true,
+      "schema_version": "20.2",
+      "features": ["basic_charts", "calculations", "dashboards", "story_points", "lod_expressions", "clustering", "forecasting", "cross_database_joins", "union", "device_layouts", "custom_sql", "extensions", "spatial_functions", "nested_sorting", "parameter_actions", "density_marks", "set_actions", "transparent_sheets", "vector_maps", "show_me", "explain_data", "data_interpreter", "buffer_calculations", "dynamic_parameters"],
+      "limitations": []
+    },
+    "2020.3": {
+      "supported": true,
+      "schema_version": "20.3",
+      "features": ["basic_charts", "calculations", "dashboards", "story_points", "lod_expressions", "clustering", "forecasting", "cross_database_joins", "union", "device_layouts", "custom_sql", "extensions", "spatial_functions", "nested_sorting", "parameter_actions", "density_marks", "set_actions", "transparent_sheets", "vector_maps", "show_me", "explain_data", "data_interpreter", "buffer_calculations", "dynamic_parameters", "viz_in_tooltip"],
+      "limitations": []
+    },
+    "2020.4": {
+      "supported": true,
+      "schema_version": "20.4",
+      "features": ["basic_charts", "calculations", "dashboards", "story_points", "lod_expressions", "clustering", "forecasting", "cross_database_joins", "union", "device_layouts", "custom_sql", "extensions", "spatial_functions", "nested_sorting", "parameter_actions", "density_marks", "set_actions", "transparent_sheets", "vector_maps", "show_me", "explain_data", "data_interpreter", "buffer_calculations", "dynamic_parameters", "viz_in_tooltip", "relationships"],
+      "limitations": []
+    },
+    "2021.1": {
+      "supported": true,
+      "schema_version": "21.1",
+      "features": ["basic_charts", "calculations", "dashboards", "story_points", "lod_expressions", "clustering", "forecasting", "cross_database_joins", "union", "device_layouts", "custom_sql", "extensions", "spatial_functions", "nested_sorting", "parameter_actions", "density_marks", "set_actions", "transparent_sheets", "vector_maps", "show_me", "explain_data", "data_interpreter", "buffer_calculations", "dynamic_parameters", "viz_in_tooltip", "relationships", "collections"],
+      "limitations": []
+    },
+    "default": {
+      "supported": true,
+      "schema_version": "18.1",
+      "features": ["basic_charts", "calculations", "dashboards"],
+      "limitations": ["unknown_version"]
+    }
+  },
+  "file_type_mappings": {
+    "twb": {
+      "description": "Tableau Workbook",
+      "format": "xml",
+      "contains": ["worksheets", "dashboards", "data_sources", "calculations"],
+      "extraction_method": "direct_xml_parse"
+    },
+    "twbx": {
+      "description": "Tableau Packaged Workbook", 
+      "format": "zip_archive",
+      "contains": ["twb_file", "data_extracts", "images", "resources"],
+      "extraction_method": "unzip_then_parse"
+    },
+    "tds": {
+      "description": "Tableau Data Source",
+      "format": "xml",
+      "contains": ["data_connection", "field_definitions", "calculations"],
+      "extraction_method": "direct_xml_parse"
+    },
+    "tdsx": {
+      "description": "Tableau Packaged Data Source",
+      "format": "zip_archive", 
+      "contains": ["tds_file", "data_extracts"],
+      "extraction_method": "unzip_then_parse"
+    }
+  },
+  "xml_namespaces": {
+    "default": "http://www.tableausoftware.com/xml/user",
+    "user": "http://www.tableausoftware.com/xml/user"
+  },
+  "element_mappings": {
+    "workbook": "root_element",
+    "datasources": "data_sources_container",
+    "datasource": "individual_data_source",
+    "worksheets": "worksheets_container", 
+    "worksheet": "individual_worksheet",
+    "dashboards": "dashboards_container",
+    "dashboard": "individual_dashboard",
+    "stories": "stories_container",
+    "story": "individual_story",
+    "connection": "data_connection",
+    "relation": "table_relation",
+    "column": "field_definition",
+    "calculation": "calculated_field",
+    "parameter": "parameter_definition",
+    "filter": "filter_definition",
+    "shelf": "visual_encoding",
+    "style": "formatting_rules"
+  }
+}
