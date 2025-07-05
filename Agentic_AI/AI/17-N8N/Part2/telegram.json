@@ -1,0 +1,717 @@
+{
+  "name": "Telegram Integration",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {
+
+        }
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [-480, -40],
+      "id": "a4a70b5a-d41c-4ec2-9bb8-2eda6d49c83f",
+      "name": "Telegram Trigger",
+      "webhookId": "8efb9855-683b-4e21-82a4-6f5d98b5a144",
+      "credentials": {
+        "telegramApi": {
+          "id": "PJMCMrFtbFC7V2Ps",
+          "name": "Telegram account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "exists",
+                      "singleValue": true
+                    },
+                    "id": "d1d798f9-a463-4870-9586-c8dec3ba9477"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "TEXT"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "0f674227-b04d-4ea2-9752-0ee89edfdb77",
+                    "leftValue": "={{ $json.message.voice.file_id }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "exists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "VOICE"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "4981c3b0-a93c-46c8-8c58-f06354287d2a",
+                    "leftValue": "={{ $json.message.document.file_id }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "exists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "FILE"
+            }
+          ]
+        },
+        "options": {
+
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [-260, -40],
+      "id": "8dee0143-6d25-4cdd-beaf-5e5f061e5206",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "9f9083c8-8eaf-42ab-b3b1-3465f52baa00",
+              "name": "text",
+              "value": "={{ $json.message.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {
+
+        }
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [-60, -240],
+      "id": "9cf53e0e-0653-4f0f-91de-71220d2474c6",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=User Prompt :  {{ $json.text }} OR {{ $('Information Extractor').item.json.output.Abstract }} with {{ $('Telegram Trigger').item.json.message.caption }}",
+        "options": {
+          "systemMessage": "Role: You are a helpful assistant with the access to CRM and email of the user.\nGoal: Fulfill user’s queries and tasks. Use respective tools.\nTools:\n\n1. SearchCRM - to find people in the CRM.\n2. Send Email - to send email to recipients. Sign emails as PAUL"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [400, -240],
+      "id": "63f8b83c-9a34-4150-9c0f-4855c15b3da1",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "options": {
+
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [400, -40],
+      "id": "34a8e4b7-9694-432e-8607-93ad13a4f7cc",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "PMbSoqNANO0kj5pa",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "={{ $json.output }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [960, -260],
+      "id": "b242081c-56e0-4342-9397-91908c9e830c",
+      "name": "Send a text message",
+      "webhookId": "dd1b207a-c5e5-4257-a915-e3eb00df6e37",
+      "credentials": {
+        "telegramApi": {
+          "id": "PJMCMrFtbFC7V2Ps",
+          "name": "Telegram account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "fileId": "={{ $json.message.voice.file_id }}"
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [-40, 220],
+      "id": "f4c43352-5bd0-498d-8611-fc8b51793576",
+      "name": "Get a file",
+      "webhookId": "12b352f6-bb06-4a29-8ecc-769143faf729",
+      "credentials": {
+        "telegramApi": {
+          "id": "PJMCMrFtbFC7V2Ps",
+          "name": "Telegram account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "operation": "transcribe",
+        "options": {
+
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [180, 220],
+      "id": "6d4c3eae-8a4c-47ab-87eb-50ca94e7f7fc",
+      "name": "Transcribe a recording",
+      "credentials": {
+        "openAiApi": {
+          "id": "PMbSoqNANO0kj5pa",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "A tool to Send a message in Gmail",
+        "sendTo": "={{ $fromAI('To', `Email Address of the recipient`, 'string') }}",
+        "subject": "={{ $fromAI('Subject', ``, 'string') }}",
+        "emailType": "text",
+        "message": "={{ $fromAI('Message', ``, 'string') }}",
+        "options": {
+
+        }
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [780, 0],
+      "id": "035d1527-8049-4ec7-9b1e-d779a9f513b3",
+      "name": "GMAIL TOOL",
+      "webhookId": "f281a2c7-1cfd-47c6-8c3b-395c8b0e09a3",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "viOxjXWWqlStcu0i",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "A tool to get Get row(s) in sheet in Google Sheets",
+        "documentId": {
+          "__rl": true,
+          "value": "1flFt1DQw0a_pBqWAHorugqSOGG-x2bVm8B7vd4O9W1g",
+          "mode": "list",
+          "cachedResultName": "Data n8n",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1flFt1DQw0a_pBqWAHorugqSOGG-x2bVm8B7vd4O9W1g/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 898186700,
+          "mode": "list",
+          "cachedResultName": "Download extracted_contacts",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1flFt1DQw0a_pBqWAHorugqSOGG-x2bVm8B7vd4O9W1g/edit#gid=898186700"
+        },
+        "options": {
+
+        }
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.6,
+      "position": [660, 0],
+      "id": "6a5cbb11-d3ff-4b07-8917-5ffd6e6c8d1f",
+      "name": "SearchCRM",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "savgAHphvSAcpQoT",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "fileId": "={{ $json.message.document.file_id }}"
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [-40, 540],
+      "id": "741cd92b-d52d-4916-8eb2-e2a120b6017e",
+      "name": "Get a file1",
+      "webhookId": "07b593f4-6ae1-40de-89a1-681d2366482c",
+      "credentials": {
+        "telegramApi": {
+          "id": "PJMCMrFtbFC7V2Ps",
+          "name": "Telegram account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.mistral.ai/v1/files",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer $MISTRAL_API_KEY"
+            },
+            {
+              "name": "Authorization",
+              "value": "Bearer $MISTRAL_API_KEY"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "purpose",
+              "value": "ocr"
+            },
+            {
+              "parameterType": "formBinaryData",
+              "name": "file",
+              "inputDataFieldName": "data"
+            }
+          ]
+        },
+        "options": {
+
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [180, 540],
+      "id": "ec6560e8-07b0-4596-b0da-8786c96fd470",
+      "name": "Upload PDF",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "o8a3vWlFegMBnW4N",
+          "name": "Mistral OCR"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://api.mistral.ai/v1/files/{{ $json.id }}/url",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "expiry",
+              "value": "24"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/json"
+            },
+            {
+              "name": "Authorization",
+              "value": "Bearer $MISTRAL_API_KEY"
+            }
+          ]
+        },
+        "options": {
+
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [400, 540],
+      "id": "8897fedb-ff1a-416d-a1d5-7a48c997308c",
+      "name": "Signed URL",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "o8a3vWlFegMBnW4N",
+          "name": "Mistral OCR"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.mistral.ai/v1/ocr",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer ${MISTRAL_API_KEY}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"mistral-ocr-latest\",\n  \"document\": {\n    \"type\": \"document_url\",\n    \"document_url\": \"{{ $json.url }}\"\n  },\n  \"include_image_base64\": true\n}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [620, 540],
+      "id": "8c608250-484f-4e60-8348-44e609048331",
+      "name": "OCR Result",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "o8a3vWlFegMBnW4N",
+          "name": "Mistral OCR"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "text": "={{ $json.pages.map(p =\u003E p.markdown).join(\"\\n\\n\") }}",
+        "attributes": {
+          "attributes": [
+            {
+              "name": "Abstract",
+              "description": "Abstract of the research paper"
+            }
+          ]
+        },
+        "options": {
+
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.informationExtractor",
+      "typeVersion": 1.2,
+      "position": [840, 540],
+      "id": "dc5ff974-10f2-47f0-97c7-3e57eaa0bb8c",
+      "name": "Information Extractor"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "gpt-4o"
+        },
+        "options": {
+
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [940, 760],
+      "id": "7186c263-3cd1-41c2-9cc7-d26163bc36a1",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "PMbSoqNANO0kj5pa",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3daec168-ce3a-45d0-bfa7-61d4896c793f",
+              "name": "output",
+              "value": "={{ $json.output }}",
+              "type": "object"
+            }
+          ]
+        },
+        "options": {
+
+        }
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [1200, 540],
+      "id": "b4ceab90-e9e3-4f3f-8e94-ddd98a8b942a",
+      "name": "Edit Fields1"
+    }
+  ],
+  "pinData": {
+
+  },
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get a file",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get a file1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get a file": {
+      "main": [
+        [
+          {
+            "node": "Transcribe a recording",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Transcribe a recording": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GMAIL TOOL": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SearchCRM": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get a file1": {
+      "main": [
+        [
+          {
+            "node": "Upload PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload PDF": {
+      "main": [
+        [
+          {
+            "node": "Signed URL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Signed URL": {
+      "main": [
+        [
+          {
+            "node": "OCR Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OCR Result": {
+      "main": [
+        [
+          {
+            "node": "Information Extractor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Information Extractor",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Information Extractor": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "b45f76f0-f409-4284-a540-9a98ebd7cbaa",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "976e7c7ca607a21024a1efebadebc62eda08c319e2a14be298a329d8d7943069"
+  },
+  "id": "UfebIj7qMFy7Wqna",
+  "tags": []
+}
