@@ -12,7 +12,7 @@ import os
 
 load_dotenv()
 api_key = os.getenv('OPENAI_API_KEY')
-model_client = OpenAIChatCompletionClient(model='gpt-4o', api_key=api_key)
+model_client = OpenAIChatCompletionClient(model='gpt-4o')
 
 
 assistant = AssistantAgent(
