@@ -7,12 +7,9 @@ Automates the process of replacing human voice with AI voice in videos
 import os
 import sys
 import time
-import json
 import requests
 import logging
-from pathlib import Path
-from typing import Optional, Dict, Any
-from urllib.parse import urlparse
+from typing import Optional, Dict
 import cloudinary
 import cloudinary.uploader
 from moviepy.editor import VideoFileClip, AudioFileClip
@@ -183,13 +180,13 @@ class VoiceConverter:
             self.logger.info(f"Transcription submitted. ID: {transcript_id}")
             
             # Poll for completion
-            return self._poll_transcription_status(transcript_id, headers)
-            
+            return self.poll_transcription_status(transcript_id, headers)
+
         except Exception as e:
             self.logger.error(f"Error in transcription: {str(e)}")
             return None
-            
-    def _poll_transcription_status(self, transcript_id: str, headers: Dict) -> Optional[str]:
+
+    def poll_transcription_status(self, transcript_id: str, headers: Dict) -> Optional[str]:
         """Poll AssemblyAI for transcription completion"""
         url = f"{ASSEMBLYAI_TRANSCRIPT_URL}/{transcript_id}"
         
@@ -219,20 +216,6 @@ class VoiceConverter:
         try:
             self.logger.info("Generating AI voice...")
             self.logger.info(f"Text length: {len(text)} characters")
-
-            # Check character limit and truncate if necessary
-            max_chars = 4000  # Conservative limit for free tier
-            if len(text) > max_chars:
-                self.logger.warning(f"Text too long ({len(text)} chars), truncating to {max_chars} chars")
-                # Find the last complete sentence within the limit
-                truncated = text[:max_chars]
-                last_period = truncated.rfind('.')
-                if last_period > max_chars * 0.8:  # If we find a period in the last 20%
-                    text = truncated[:last_period + 1]
-                else:
-                    text = truncated
-                self.logger.info(f"Truncated text length: {len(text)} characters")
-
             self.logger.info(f"Voice ID: {voice_id}")
 
             url = f"{ELEVENLABS_TTS_URL}/{voice_id}"
@@ -252,6 +235,13 @@ class VoiceConverter:
             self.logger.info(f"Making request to: {url}")
             response = requests.post(url, json=data, headers=headers)
             self.logger.info(f"Response status: {response.status_code}")
+
+            if response.status_code == 401:
+                self.logger.error("ElevenLabs API returned 401 Unauthorized - likely due to character quota exceeded")
+                self.logger.error(f"Attempted to process {len(text)} characters")
+                self.logger.error("Please check your ElevenLabs account quota or reduce text length")
+                return False
+
             response.raise_for_status()
 
             with open(output_path, 'wb') as audio_file:
