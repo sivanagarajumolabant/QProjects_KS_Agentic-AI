@@ -1,0 +1,21 @@
+# Azure AI Voice-Over Conversion Requirements
+
+# Azure SDK packages
+azure-cognitiveservices-speech==1.34.0
+azure-storage-blob==12.19.0
+azure-identity==1.15.0
+azure-mgmt-storage==21.1.0
+
+# Video/Audio processing
+moviepy==1.0.3
+pydub==0.25.1
+
+# HTTP requests and utilities
+requests==2.31.0
+tqdm==4.66.1
+
+# Environment and configuration
+python-dotenv==1.0.0
+
+# Logging and utilities
+colorlog==6.8.0
