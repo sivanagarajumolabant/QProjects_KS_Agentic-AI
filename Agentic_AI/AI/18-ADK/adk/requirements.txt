@@ -1,0 +1,4 @@
+google-adk
+dotenv
+pydantic
+crewai-tools
