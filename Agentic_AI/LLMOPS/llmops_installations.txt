@@ -1,0 +1,361 @@
+https://krishnaikacademy.notion.site/Software-Checklist-1f0eba9593d0804a8ab2cf17762d2b1b
+
+# Software Checklist
+
+**Please be ready with these before Next Saturday 19th July’25 class**
+
+- [ ]  Python Distribution
+- [ ]  IDE
+- [ ]  GIT ——> GIT BASH
+- [ ]  DOCKER
+- [ ]  POSTMAN (Optional)
+- [ ]  WARP (Optional)
+- [ ]  AWS CLI
+
+## Python Distributions(Any One)
+
+- [ ]  Anaconda (*Majorly we will use in this course*)
+- [ ]  Python
+
+[Download Python](https://www.python.org/downloads/)
+
+[Download Now | Anaconda](https://www.anaconda.com/download/success)
+
+---
+
+```python
+Windows Env variables PATH:
+C:\Users\Admin\anaconda3
+C:\Users\Admin\anaconda3\Library\mingw-w64\bin
+C:\Users\Admin\anaconda3\Library\usr\bin
+C:\Users\Admin\anaconda3\Library\bin
+C:\Users\Admin\anaconda3\Scripts
+```
+
+## Package Managers(Any One)
+
+- [ ]  Conda (*Rarely*)
+- [ ]  pip (*Majorly we will use in this course*)
+- [ ]  uv (*Optional*)
+
+**Refer for UV** 
+
+[UV- Python Package And Project Manager- Faster Than Pip](https://www.youtube.com/watch?v=JeiCxJP7IK4)
+
+---
+
+## Local IDE or Text Editor(Any One)
+
+- [ ]  VSCODE (*Majorly we will use in this course*)
+- [ ]  CURSOR *PAID*
+- [ ]  WINDSURF *PAID*
+- [ ]  TRAE
+- [ ]  PYCHARM Community or Professional
+    
+    [](https://code.visualstudio.com/)
+    
+    [Cursor - The AI Code Editor](https://www.cursor.com/)
+    
+    [Windsurf (formerly Codeium) - The most powerful AI Code Editor](https://windsurf.com/)
+    
+    [Trae - Collaborate with Intelligence](https://www.trae.ai/)
+    
+    [PyCharm: The only Python IDE you need](https://www.jetbrains.com/pycharm/)
+    
+
+---
+
+## OPTIONAL : Browser based Online IDE
+
+- [ ]  Lightning.ai
+- [ ]  Replit
+- [ ]  Firebase Studio
+
+---
+
+## Working with virtual environment
+
+- [ ]  venv
+- [ ]  conda
+- [ ]  uv
+    
+    [Managing environments — conda 25.5.1.dev2 documentation](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)
+    
+
+```markdown
+# creates the virtual env in anaconda3 folder
+conda create -n venv_ur_name python==3.12 -y
+conda activate venv_ur_name
+conda deactivate
+conda remove -n venv_ur_name --all
+
+OR
+
+# creates the virtual env in current folder
+conda create -p venv_ur_name python==3.12 -y
+conda activate
+conda deactivate
+# Delete the folder venv_ur_name
+```
+
+Refer :- https://gist.github.com/loic-nazaries/b18a908473935243fc23586f35d4bacc
+
+## OPTIONAL VENV
+
+```markdown
+# 🌐 Python : Virtual Environment Management with `venv`
+
+## 📌 Prerequisite
+
+Ensure Python is installed:
+
+```bash
+python --version
+```
+
+---
+
+## 📁 1. Create Virtual Environment
+
+Replace `myenv` with your desired environment name.
+
+### ✅ Windows
+
+```bash
+python -m venv myenv
+```
+
+### ✅ macOS / Linux
+
+```bash
+python -m venv myenv
+```
+
+---
+
+## ▶️ 2. Activate Virtual Environment
+
+### ✅ Windows (Command Prompt)
+
+```bash
+myenv\Scripts\activate
+```
+
+### ✅ Windows (PowerShell)
+
+```bash
+.\myenv\Scripts\Activate.ps1
+```
+
+### ✅ macOS / Linux
+
+```bash
+source myenv/bin/activate
+```
+
+> After activation, your shell prompt will change to show the environment name.
+
+---
+
+## ❌ 3. Deactivate Virtual Environment
+
+Works the same on all platforms:
+
+```bash
+deactivate
+```
+
+---
+
+## 🗑️ 4. Delete Virtual Environment
+
+Simply remove the folder:
+
+### ✅ Windows
+
+```bash
+rmdir /s /q myenv
+```
+
+### ✅ macOS / Linux
+
+```bash
+rm -rf myenv
+```
+
+---
+```
+
+[venv — Creation of virtual environments](https://docs.python.org/3/library/venv.html)
+
+## UV
+
+[uv](https://docs.astral.sh/uv/)
+
+```markdown
+# 🐍 Python : Virtual Environment Management with `uv` (Cross-platform)
+
+[`uv`](https://github.com/astral-sh/uv) is a super-fast Python package manager that also supports creating virtual environments. Here’s how to manage virtual environments using `uv` on **Windows**, **Linux**, and **macOS**.
+
+---
+
+## 📦 Step 1: Install `uv`
+
+Make sure you have Python 3.12 installed.
+
+```bash
+# Using pipx (recommended)
+pipx install uv
+
+# Or via pip
+pip install uv
+
+# Create environment
+# Syntax
+uv venv <env_name>
+
+# Example
+uv venv myenv
+
+# Activate
+myenv\Scripts\activate -> Windows
+source myenv/bin/activate -> Mac/Linux
+
+# Deactivate
+deactivate
+```
+-------------------------------------------
+################ OR #######################
+-------------------------------------------
+
+```bash
+uv venv --python 3.11
+source .venv/bin/activate
+Deactivate
+
+uv pip install -r req.txt
+
+rm -rf myenv
+
+# Create new uv environment and install 
+requirements 
+uv venv myenv 
+source myenv/bin/activate 
+uv pip install -r requirements.txt
+
+uv sync
+
+uv venv --python 3.11 myenv 
+
+source myenv/bin/activate 
+
+uv pip install -r requirements.txt
+
+uv add -r requirements.txt
+```
+```
+
+```markdown
+set Path=C:\Users\aksha\.local\bin;%Path%   (cmd)    
+$env:Path = "C:\Users\aksha\.local\bin;$env:Path"   (powershell)
+```
+
+# Version Control System
+
+- [ ]  GIT (*Always we use in the course*)
+- [ ]  Github Desktop (*Optional)*
+
+[Git And Github](https://www.youtube.com/playlist?list=PLZoTAELRMXVOSsBerFZKsdCaA4RYr4RGW)
+
+[Git - Downloads](https://git-scm.com/downloads)
+
+### Commands used in Class
+
+```markdown
+# Creating conda environment
+conda create -n llmops python=3.12 -y
+
+# activate conda environemnt
+conda activate llmops
+
+# Creating conda env in custom path
+For current directory : conda create -p abcd001 python=3.11
+For directory of choice : conda create -p c:/abc/usr/abcd002 python=3.11
+
+# Activating conda environment created using -p
+conda activate c:/abc/usr/abcd002
+
+# Creating requirements.txt
+pip freeze
+pip freeze > requirements.txt
+pip list
+pip list --format=freeze > req.txt
+
+# Installing requirements from requirements file
+pip install -r file_name.txt
+```
+
+# Extra Tools
+
+## Markdown
+
+[Basic Syntax | Markdown Guide](https://www.markdownguide.org/basic-syntax/)
+
+## Docker
+
+Docker Cheatsheet
+
+https://docs.docker.com/get-started/docker_cheatsheet.pdf
+
+[Docker Desktop: The #1 Containerization Tool for Developers | Docker](https://www.docker.com/products/docker-desktop/)
+
+### Docker Basics
+
+[The Ultimate Docker Cheat Sheet](https://dockerlabs.collabnix.com/docker/cheatsheet/)
+
+[Complete Dockers For Data Science Tutorial In One Shot](https://www.youtube.com/watch?v=8vmKtS8W7IQ)
+
+System Check for Windows
+
+```markdown
+Using Windows Settings
+Open Settings: Press Windows + I on your keyboard.
+
+Go to System > About.
+
+Check Device Specifications:
+
+Look for the System Type entry.
+
+If it says "ARM-based processor" or "ARM64-based processor", your PC uses an ARM chip.
+
+If it says "x64-based processor" or "AMD64", your PC uses an AMD (or Intel) processor.
+```
+
+WSL Setup in Windows
+
+[Windows](https://docs.docker.com/desktop/setup/install/windows-install/#option-1-install-or-update-wsl-via-the-terminal)
+
+---
+
+## Markdown Basics
+
+[Basic Syntax | Markdown Guide](https://www.markdownguide.org/basic-syntax/)
+
+## Cloud CLI
+
+### AWS CLI
+
+[Installing or updating to the latest version of the AWS CLI - AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+
+### GCP CLI
+
+[Install the gcloud CLI  |  Google Cloud CLI Documentation](https://cloud.google.com/sdk/docs/install#windows)
+
+## API Tool
+
+[Postman: The World's Leading API Platform | Sign Up for Free](https://www.postman.com/)
+
+**Warp Terminal**
+
+[The Intelligent Terminal](https://www.warp.dev/)
