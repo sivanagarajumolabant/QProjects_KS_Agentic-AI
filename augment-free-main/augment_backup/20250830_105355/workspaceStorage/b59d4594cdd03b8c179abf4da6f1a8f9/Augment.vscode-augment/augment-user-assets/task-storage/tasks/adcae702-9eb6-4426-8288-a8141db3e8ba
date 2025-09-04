@@ -1,0 +1,9 @@
+{
+  "uuid": "adcae702-9eb6-4426-8288-a8141db3e8ba",
+  "name": "Create User Path Selection Interface",
+  "description": "Build Angular UI component for users to select local directory path where VS Code workspace should be created, with validation and error handling",
+  "state": "COMPLETE",
+  "subTasks": [],
+  "lastUpdated": 1756446528565,
+  "lastUpdatedBy": "AGENT"
+}

@@ -1,0 +1,9 @@
+{
+  "uuid": "b271172d-0a26-47e2-a5f5-4729a80d5b65",
+  "name": "Create Client-Side VS Code Detection Service",
+  "description": "Develop Angular service to detect VS Code installation on user's machine using protocol handlers and browser APIs, replacing server-side is_vscode_installed() function",
+  "state": "COMPLETE",
+  "subTasks": [],
+  "lastUpdated": 1756446528482,
+  "lastUpdatedBy": "AGENT"
+}

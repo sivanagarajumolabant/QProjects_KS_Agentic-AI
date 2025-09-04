@@ -1,0 +1,9 @@
+{
+  "uuid": "f62d5e09-efd0-40be-9a86-2ea1752daf23",
+  "name": "Current Task List",
+  "description": "Root task for conversation 3fe150b5-d80c-4774-ba51-87dfad24c2b1",
+  "state": "NOT_STARTED",
+  "subTasks": [],
+  "lastUpdated": 1755950591291,
+  "lastUpdatedBy": "USER"
+}

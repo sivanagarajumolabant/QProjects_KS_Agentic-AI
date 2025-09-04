@@ -1,0 +1,9 @@
+# Preferences
+- User prefers generic AWS integration with single configuration that allows choosing between Q Developer and Bedrock services, following existing codebase patterns and maintaining LangChain compatibility.
+- User prefers to integrate AWS Q Developer for AI model access (Claude Sonnet 5, GPT-5) in Stage1/Stage2 processes with minimal changes to existing working code.
+- User prefers AWS Q Developer integration where model names are dynamically loaded from config.py rather than hardcoded in the LLM implementation, and wants to use AWS access keys for authentication.
+- User prefers to use only LangChain implementation for AWS Q Developer integration and may have direct AWS Q Developer access (not just Bedrock).
+
+# VS Code Integration
+- User prefers VS Code export functionality to open VS Code directly on the client machine (not server-side) with workspace folder, GitHub Copilot, and copilot_prompt.txt automatically opened.
+- User prefers VS Code integration to open the inner workspace folder from ZIP files, open in new windows to preserve existing workspaces, and automatically open copilot prompt files and chat windows.

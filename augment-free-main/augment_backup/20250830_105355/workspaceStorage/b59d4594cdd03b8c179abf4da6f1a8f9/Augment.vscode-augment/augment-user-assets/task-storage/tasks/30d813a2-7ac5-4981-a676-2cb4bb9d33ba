@@ -1,0 +1,9 @@
+{
+  "uuid": "30d813a2-7ac5-4981-a676-2cb4bb9d33ba",
+  "name": "Implement Client-Side File System Integration",
+  "description": "Create Angular service using File System Access API (Chrome 86+) and fallback methods to handle workspace creation and file extraction on user's local machine",
+  "state": "COMPLETE",
+  "subTasks": [],
+  "lastUpdated": 1756446528492,
+  "lastUpdatedBy": "AGENT"
+}

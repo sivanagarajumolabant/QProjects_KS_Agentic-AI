@@ -1,0 +1,9 @@
+{
+  "uuid": "f0c3f2c5-1b00-4342-a19b-38e86c5d1431",
+  "name": "Create Stage1-Specific Angular Components",
+  "description": "Develop Angular components specifically for Stage1 export with path selection, VS Code detection, and workspace creation functionality tailored to Stage1 data structure",
+  "state": "COMPLETE",
+  "subTasks": [],
+  "lastUpdated": 1756446528529,
+  "lastUpdatedBy": "AGENT"
+}

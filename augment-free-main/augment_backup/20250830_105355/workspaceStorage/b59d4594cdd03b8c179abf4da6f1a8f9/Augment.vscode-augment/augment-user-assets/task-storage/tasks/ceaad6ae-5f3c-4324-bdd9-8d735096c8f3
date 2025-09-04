@@ -1,0 +1,9 @@
+{
+  "uuid": "ceaad6ae-5f3c-4324-bdd9-8d735096c8f3",
+  "name": "Update Stage1 Export Request Model",
+  "description": "Modify ExportToVSCodeRequest to remove export_path requirement and add client-side specific parameters, update API contract for client-side operation",
+  "state": "COMPLETE",
+  "subTasks": [],
+  "lastUpdated": 1756446528571,
+  "lastUpdatedBy": "AGENT"
+}

@@ -1,0 +1,20 @@
+{
+  "uuid": "33034c5e-473d-4ec8-b89a-5e7af3b7fb66",
+  "name": "Current Task List",
+  "description": "Root task for conversation __NEW_AGENT__",
+  "state": "NOT_STARTED",
+  "subTasks": [
+    "d7d12c1d-2cf6-4506-b3ac-53ba848aa980",
+    "b271172d-0a26-47e2-a5f5-4729a80d5b65",
+    "30d813a2-7ac5-4981-a676-2cb4bb9d33ba",
+    "fc398283-9b84-4eee-9849-b25160d2e45a",
+    "f0c3f2c5-1b00-4342-a19b-38e86c5d1431",
+    "0d2d064b-74e8-4899-99bc-42372987df0a",
+    "58124e69-2e88-484a-8b5e-31d5d023f08d",
+    "adcae702-9eb6-4426-8288-a8141db3e8ba",
+    "ceaad6ae-5f3c-4324-bdd9-8d735096c8f3",
+    "6fe36eeb-98aa-496d-826c-52101714e62e"
+  ],
+  "lastUpdated": 1756445913956,
+  "lastUpdatedBy": "USER"
+}

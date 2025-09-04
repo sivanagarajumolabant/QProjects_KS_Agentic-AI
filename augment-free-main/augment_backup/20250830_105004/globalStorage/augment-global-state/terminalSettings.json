@@ -1,0 +1,1 @@
+{"supportedShells":[{"name":"powershell","path":"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe","friendlyName":"powershell","supportString":"Not supported"},{"name":"bash","path":"C:\\Program Files\\Git\\bin\\bash.exe","friendlyName":"bash","supportString":"Not supported"},{"name":"powershell","friendlyName":"exec","supportString":"Fully supported"}]}

@@ -1,0 +1,9 @@
+{
+  "uuid": "58124e69-2e88-484a-8b5e-31d5d023f08d",
+  "name": "Add Client-Side VS Code Launch Integration",
+  "description": "Implement VS Code protocol handlers (vscode://) and fallback methods to automatically open workspace and copilot_prompt.txt on user's machine",
+  "state": "COMPLETE",
+  "subTasks": [],
+  "lastUpdated": 1756446528556,
+  "lastUpdatedBy": "AGENT"
+}

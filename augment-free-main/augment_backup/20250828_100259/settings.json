@@ -1,0 +1,32 @@
+{
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "vs-kubernetes": {
+        "vscode-kubernetes.helm-path-windows": "C:\\Users\\SivaNagaraju(Quadran\\.vs-kubernetes\\tools\\helm\\windows-amd64\\helm.exe",
+        "vscode-kubernetes.kubectl-path-windows": "C:\\Users\\SivaNagaraju(Quadran\\.vs-kubernetes\\tools\\kubectl\\kubectl.exe",
+        "vscode-kubernetes.minikube-path-windows": "C:\\Users\\SivaNagaraju(Quadran\\.vs-kubernetes\\tools\\minikube\\windows-amd64\\minikube.exe"
+    },
+    "redhat.telemetry.enabled": true,
+    "pgsql.serverGroups": [
+        {
+            "name": "Servers",
+            "id": "D440190F-4B93-4196-8AAB-BCFC408E6DA5",
+            "isDefault": true
+        }
+    ],
+    "git.autofetch": true,
+    "terminal.integrated.defaultProfile.windows": "Command Prompt",
+    "mcpServers": {},
+    "amazonQ.suppressPrompts": {
+        "amazonQChatPairProgramming": true,
+        "amazonQChatDisclaimer": true
+    },
+    "augment.chat.userGuidelines": "1. always write imports on on top only.",
+    "github.copilot.enable": {
+        "*": false,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false
+    },
+    "files.autoSave": "onFocusChange",
+    "editor.formatOnSave": true
+}

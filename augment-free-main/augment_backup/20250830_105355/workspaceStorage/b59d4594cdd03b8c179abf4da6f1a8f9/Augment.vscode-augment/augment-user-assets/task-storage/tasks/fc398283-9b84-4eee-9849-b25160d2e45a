@@ -1,0 +1,9 @@
+{
+  "uuid": "fc398283-9b84-4eee-9849-b25160d2e45a",
+  "name": "Modify Stage1 Export API for Client-Side Support",
+  "description": "Update /export-to-vscode endpoint to return workspace data as ZIP or JSON instead of creating files on server, remove server-side VS Code checks and file operations",
+  "state": "COMPLETE",
+  "subTasks": [],
+  "lastUpdated": 1756446528516,
+  "lastUpdatedBy": "AGENT"
+}
