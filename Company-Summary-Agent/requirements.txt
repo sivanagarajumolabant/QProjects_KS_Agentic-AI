@@ -1,8 +1,0 @@
-streamlit
-selenium
-beautifulsoup4
-python-dotenv
-langchain-core
-langgraph
-langchain-groq
-langchain_openai
